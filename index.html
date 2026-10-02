@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALEXANDER McQUEEN | PLATO'S ATLANTIS ARCHIVE</title>
-    <!-- Vínculo com a folha de estilo conceitual (CSS) -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Textura digital que simula o ruído da transmissão original da SHOWstudio em 2010 -->
     <div class="archive-grain-overlay"></div>
 
     <main class="editorial-container">
@@ -21,6 +19,12 @@
                 <h1 class="brand-title">ALEXANDER McQUEEN</h1>
                 <p class="brand-collection">SPRING / SUMMER 2010 — PLATO'S ATLANTIS</p>
             </header>
+
+            <!-- ESPAÇO PARA O GIF DA CAPA -->
+            <div class="editorial-media-frame">
+                <!-- Você pode colocar uma URL fixa aqui ou deixar o JS carregar -->
+                <img id="cover-gif" src="https://gifdb.com" alt="Plato's Atlantis Runway">
+            </div>
 
             <div class="manifesto-content">
                 <h2 class="editorial-subtitle">THE ARCHITECT SIMBIONTE: DECONSTRUCTION</h2>
@@ -44,31 +48,31 @@
              2. O EXPOSITOR CORE / WORKSPACE (TELA DE JOGO)
              ========================================== -->
         <section id="game-screen" class="editorial-view hidden">
-            <!-- Barra de metadados técnica, estilo catalogação de luxo -->
             <header class="archive-metadata-bar">
                 <div class="meta-item">CORE NUCLEUS: <span id="current-phase" class="meta-highlight">1</span>/5</div>
                 <div class="meta-item">BIOLOGICAL INTEGRITY: <span id="lives-count" class="meta-highlight">▲ ▲ ▲</span></div>
                 <div class="meta-item">NEURAL SYNC: <span id="score-count" class="meta-highlight">0%</span></div>
             </header>
 
-            <!-- Relato Conceitual da Passarela / Imersão McQueen -->
+            <!-- ESPAÇO PARA O GIF DINÂMICO DE CADA LOOK / FASE -->
+            <div class="editorial-media-frame">
+                <img id="challenge-gif" src="" alt="Look de Passarela Corrompido">
+            </div>
+
             <article id="runway-context" class="lookbook-context">
-                <!-- Injeção de texto curatorial e sombrio via JS baseado no look do desfile -->
+                <!-- Injeção de texto curatorial via JS -->
             </article>
 
-            <!-- A Célula do Dilema Algorítmico -->
             <div class="terminal-anomaly-box">
                 <span class="alert-tag">SYSTEM ANOMALY DETECTED //</span>
                 <p id="challenge-text" class="dilemma-statement">Buscando transmissão corrompida no núcleo do banco de dados...</p>
                 
-                <!-- Grade minimalista de decisões táteis (Alternativas) -->
                 <div id="options-container" class="options-editorial-grid">
-                    <!-- Botões estéticos gerados e injetados via JS -->
+                    <!-- Botões estéticos gerados via JS -->
                 </div>
             </div>
 
-            <!-- Painel Curatorial de Feedback (Explicação Educativa) -->
-            <div id="feedback-box" class="feedback-curatorial-panel hidden">
+            <div class="feedback-curatorial-panel hidden" id="feedback-box">
                 <div class="feedback-verdict" id="feedback-status-title"></div>
                 <p id="feedback-text" class="feedback-analysis-text"></p>
                 <button id="next-btn" class="btn-editorial-primary">ADVANCE TO NEXT LOOK // COORD</button>
@@ -83,6 +87,11 @@
                 <h1 class="brand-title">SYSTEM REBOOTED</h1>
                 <p class="brand-collection">POST-EVOLUTION EVALUATION REPORT</p>
             </header>
+
+            <!-- ESPAÇO PARA O GIF DO ENCERRAMENTO -->
+            <div class="editorial-media-frame">
+                <img id="end-gif" src="https://gifdb.com" alt="Fim da Evolução">
+            </div>
 
             <div class="final-assessment">
                 <p id="end-message" class="assessment-paragraph"></p>
@@ -100,7 +109,6 @@
 
     </main>
 
-    <!-- Vínculo com a lógica de dados e comportamento do DOM (JS) -->
     <script src="script.js"></script>
 </body>
 </html>
