@@ -226,7 +226,7 @@ const challenges = [
         title: "THE MEMORY",
 
         image:
-            "images/challenge-2.jpg",
+            "challenge-2.jpg",
 
         question:
             "A IA coleta informações pessoais dos habitantes sem explicar claramente como esses dados serão utilizados. Qual questão deve ser considerada?",
@@ -263,7 +263,7 @@ const challenges = [
         title: "THE MIRROR",
 
         image:
-            "images/challenge-3.jpg",
+            "challenge-3.jpg",
 
         question:
             "Um sistema produz resultados diferentes para determinados grupos porque seus dados de treinamento representam esses grupos de maneira desigual. O que deve ser investigado?",
@@ -300,7 +300,7 @@ const challenges = [
         title: "THE ORACLE",
 
         image:
-            "images/challenge-4.jpg",
+            "challenge-4.jpg",
 
         question:
             "Uma IA apresenta uma informação como verdadeira. Qual atitude demonstra pensamento crítico?",
@@ -337,7 +337,7 @@ const challenges = [
         title: "THE LAST CHOICE",
 
         image:
-            "images/challenge-5.jpg",
+            "challenge-5.jpg",
 
         question:
             "Qual medida pode ajudar a manter os habitantes de Atlantis no controle de decisões importantes que envolvem sistemas de IA?",
