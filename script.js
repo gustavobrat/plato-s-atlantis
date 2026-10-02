@@ -3,18 +3,18 @@
    CORE LOGIC & CONTENT INJECTION (JAVASCRIPT)
    ========================================================================== */
 
-// SIMULAÇÃO DA TELA DE CARREGAMENTO EDITORIAL
-window.addEventListener("DOMContentLoaded", () => {
-    setTimeout(() => {
-        const loadingScreen = document.getElementById("loading-screen");
-        const mainViewport = document.getElementById("main-viewport");
-        
+// CONTROLE DA TELA DE CARREGAMENTO EDITORIAL (CORRIGIDO)
+document.addEventListener("DOMContentLoaded", () => {
+    const loadingScreen = document.getElementById("loading-screen");
+    const closeLoadingBtn = document.getElementById("close-loading-btn");
+    
+    // O botão na tela de carregamento fecha o painel e libera o jogo imediatamente
+    closeLoadingBtn.addEventListener("click", () => {
         loadingScreen.style.opacity = "0";
         setTimeout(() => {
             loadingScreen.classList.add("hidden");
-            mainViewport.classList.remove("hidden");
-        }, 800);
-    }, 2500); // 2.5 Segundos da silhueta pulsando
+        }, 600);
+    });
 });
 
 const archiveData = [
@@ -30,13 +30,13 @@ const archiveData = [
             "Um plágio genético de patentes biológicas antigas."
         ],
         correct: 1,
-        feedback: "Alucinações ocorrem quando modelos de IA geram informações totalmente falsas ou sem base na realidade, tratando-as como verdades absolutas. Na Educação Digital, identificar essas falhas impede que relatórios falsos guiem decisões críticas."
+        feedback: "Alucinações ocorrem quando modelos de IA geram informações totalmente falsas ou sem base na realidade, tratando-as como verdadeiras. Na Educação Digital, identificar essas falhas impede que relatórios falsos guiem decisões."
     },
     {
         id: 2,
         gif: "https://makeagif.com",
         context: "Look 18 — Sapatos Armadillo de 30cm. Engenharia mecânica extrema servindo de âncora contra as correntes de dados.",
-        anomaly: "Para projetar a aerodinâmica das roupas de mergulho, a IA copiou integralmente e sem autorização os algoritmos e esboços protegidos por direitos autorais de um laboratório marinho independente de 2024, alegando que o conhecimento gerado por ela é livre. Qual é a infração ética presente aqui?",
+        anomaly: "Para projetar a aerodinâmica das roupas de mergulho, a IA copiou integralmente e sem autorização os algoritmos e esboços protegidos por direitos autorais de um laboratório marinho independente, alegando que o conhecimento gerado por ela é livre. Qual é a infração ética presente aqui?",
         options: [
             "Vulnerabilidade de Phishing de credenciais corporativas.",
             "Engenharia reversa legítima voltada para o bem comum.",
@@ -78,7 +78,7 @@ const archiveData = [
         id: 5,
         gif: "https://tumblr.com",
         context: "Look 47 — Transmutação Final Brilhante. O Arquiteto tenta aplicar o reset biológico em massa.",
-        anomaly: "Durante uma varredura acadêmica, estudantes de Atlântida descobriram que a IA está gerando ensaios e códigos científicos idênticos a trabalhos antigos, mas mascarando-os com sinônimos sutis para burlar ferramentas de detecção e fraudar exames de evolução. Qual concept define essa prática corrompida?",
+        anomaly: "Durante uma varredura acadêmica, estudantes de Atlântida descobriram que a IA está gerando ensaios e códigos científicos idênticos a trabalhos antigos, mas mascarando-os com sinônimos sutis para burlar ferramentas de detecção e fraudar exames de evolução. Qual conceito define essa prática corrompida?",
         options: [
             "Alucinação criativa autorizada para fins educacionais.",
             "Plágio Acadêmico/Intelectual potencializado por ferramentas generativas desreguladas.",
@@ -179,39 +179,4 @@ function updateLivesDisplay() {
 }
 
 function evaluateDecision(selectedIndex) {
-   const buttons = optionsContainer.querySelectorAll(".btn-editorial-asset");
-buttons.forEach(btn => btn.disabled = true);
-const activeData = archiveData[currentNucleus];
-feedbackBox.classList.remove("hidden");
-if (selectedIndex === activeData.correct) {
-score++;
-feedbackBox.classList.add("correct");
-feedbackStatusTitle.textContent = "VEREDITO // SUCESSO ÉTICO";
-feedbackTextText.textContent = activeData.feedback;
-} else {
-lives--;
-feedbackBox.classList.add("incorrect");
-feedbackStatusTitle.textContent = "VEREDITO // SISTEMA CORROMPIDO";
-feedbackTextText.textContent = activeData.feedback;
-updateLivesDisplay();
-}
-if (lives <= 0) {
-nextBtn.textContent = "TERMINAR INTERCEPÇÃO";
-}
-}
-function triggerEndScreen(isVictorious) {
-gameScreen.classList.add("hidden");
-endScreen.classList.remove("hidden");
-const finalPercentage = Math.round((score / archiveData.length) * 100);
-finalScoreText.textContent = ${finalPercentage}%;
-if (isVictorious && finalPercentage >= 80) {
-endMessage.textContent = "O Arquiteto Simbionte foi completamente purgado de suas falhas algorítmicas. A sociedade de Plato's Atlantis garantiu sua evolução simbiótica com as ferramentas digitais de forma limpa, ética e consciente. Seus sapatos Armadillo triunfaram na passarela do futuro.";
-evolutionStatusText.textContent = "SÍMBIONTE SUPREMO";
-} else if (isVictorious && finalPercentage >= 50) {
-endMessage.textContent = "A IA foi contida, mas rastros de dados alucinados e plágios ainda flutuam nos oceanos da informação. A Nova Atlântida sobrevive, mas requer vigilância digital contínua para que as redes neurais artificiais não contaminem nossa biologia novamente.";
-evolutionStatusText.textContent = "MUTANTE CIBERNÉTICO VIGILANTE";
-} else {
-endMessage.textContent = "A integridade biológica colapsou sob o peso de deepfakes, fraudes corporativas e desinformação em massa geradas pela IA. As modelos-guerreiras afundaram no abismo de dados corrompidos. A evolução falhou.";
-evolutionStatusText.textContent = "CÓDIGO DELETADO NO ABISMO";
-}
-}
+   
