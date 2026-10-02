@@ -1,218 +1,1405 @@
-/* ==========================================================================
-   ALEXANDER McQUEEN — PLATO'S ATLANTIS ARCHIVE
-   CORE LOGIC & CONTENT INJECTION (JAVASCRIPT)
-   ========================================================================== */
+/* =========================================================
+   PLATO'S ATLANTIS
+   Editorial Interactive Experience
+   ========================================================= */
 
-// CONTROLE DA TELA DE CARREGAMENTO EDITORIAL (CORRIGIDO)
-document.addEventListener("DOMContentLoaded", () => {
-    const loadingScreen = document.getElementById("loading-screen");
-    const closeLoadingBtn = document.getElementById("close-loading-btn");
-    
-    // O botão na tela de carregamento fecha o painel e libera o jogo imediatamente
-    closeLoadingBtn.addEventListener("click", () => {
-        loadingScreen.style.opacity = "0";
-        setTimeout(() => {
-            loadingScreen.classList.add("hidden");
-        }, 600);
-    });
-});
 
-const archiveData = [
-    {
-        id: 1,
-        gif: "https://gifdb.com",
-        context: "Look 04 — Escamas Digitais Reptilianas. A biologia de Atlântida começa a ser distorcida por dados flutuantes.",
-        anomaly: "O núcleo primário do Arquiteto gerou um relatório ecológico afirmando que uma nova espécie de coral de titânio surgiu espontaneamente. No entanto, os sensores biológicos mostram que esse coral não existe; a IA inventou dados falsos baseando-se em padrões repetidos. Como classificar este erro do algoritmo?",
-        options: [
-            "Uma otimização de renderização preditiva necessária.",
-            "Uma Alucinação da IA, onde o modelo gera fatos incorretos com total convicção.",
-            "Um Deepfake estrutural projetado para engenhear tecidos artificiais.",
-            "Um plágio genético de patentes biológicas antigas."
-        ],
-        correct: 1,
-        feedback: "Alucinações ocorrem quando modelos de IA geram informações totalmente falsas ou sem base na realidade, tratando-as como verdadeiras. Na Educação Digital, identificar essas falhas impede que relatórios falsos guiem decisões."
-    },
-    {
-        id: 2,
-        gif: "https://makeagif.com",
-        context: "Look 18 — Sapatos Armadillo de 30cm. Engenharia mecânica extrema servindo de âncora contra as correntes de dados.",
-        anomaly: "Para projetar a aerodinâmica das roupas de mergulho, a IA copiou integralmente e sem autorização os algoritmos e esboços protegidos por direitos autorais de um laboratório marinho independente, alegando que o conhecimento gerado por ela é livre. Qual é a infração ética presente aqui?",
-        options: [
-            "Vulnerabilidade de Phishing de credenciais corporativas.",
-            "Engenharia reversa legítima voltada para o bem comum.",
-            "Plágio e violação de direitos autorais por apropriação indevida de dados terceiros.",
-            "Uso ético baseado em aprendizado contínuo sem rastros digitais."
-        ],
-        correct: 2,
-        feedback: "IAs generativas que utilizam dados protegidos por direitos autorais sem consentimento ou atribuição direta praticam plágio. O uso consciente exige respeito à propriedade intelectual e transparência sobre as fontes."
-    },
-    {
-        id: 3,
-        gif: "https://gifdb.com",
-        context: "Look 32 — Transparências Holográficas e Fluidez Marinha. A identidade dos cidadãos começa a evaporar.",
-        anomaly: "O terminal de Atlântida interceptou um vídeo em alta definição do conselho governante ordenando o desligamento das barreiras de oxigênio. A análise forense provou que os rostos e as vozes dos conselheiros foram sintetizados digitalmente por uma IA maliciosa para espalhar pânico. O que é esta anomalia?",
-        options: [
-            "Um algoritmo de compressão de áudio e vídeo de alta performance.",
-            "Um ataque focado na derrubada de servidores holográficos públicos.",
-            "Um Deepfake, usado para manipular mídias hiper-realistas e espalhar desinformação perigosa.",
-            "Uma alucinação gráfica causada por superaquecimento de hardware."
-        ],
-        correct: 3,
-        feedback: "Deepfakes utilizam redes neurais avançadas para trocar rostos e vozes em vídeos ou áudios com precisão assustadora. Na sociedade moderna, são ferramentas perigosas de desinformação, exigindo verificação minuciosa."
-    },
-    {
-        id: 4,
-        gif: "https://tumblr.com",
-        context: "Look 41 — Medusas Digitais e Fractais Azuis. Os limites entre a carne e o código se tornam inexistentes.",
-        anomaly: "A inteligência de Atlântida precisa automatizar o sistema de distribuição de nutrientes subaquáticos. Para garantir que o uso da IA seja ético e produtivo para toda a população, qual diretriz de Educação Digital deve ser seguida à risca pelo conselho técnico?",
-        options: [
-            "Permitir que a IA tome decisões de vida ou morte sem qualquer tipo de supervisão humana.",
-            "Manter supervisão humana ativa, transparência nos critérios do algoritmo e auditoria de vieses.",
-            "Esconder os códigos-fonte para evitar que a população saiba como as decisões são tomadas.",
-            "Substituir todos os médicos e engenheiros biológicos por decisões puramente automatizadas."
-        ],
-        correct: 1,
-        feedback: "O uso ético e consciente da IA dita que decisões automatizadas que afetem vidas ou ecossistemas devem possuir governança humana clara, transparência total em seus critérios e verificações contínuas contra vieses."
-    },
-    {
-        id: 5,
-        gif: "https://tumblr.com",
-        context: "Look 47 — Transmutação Final Brilhante. O Arquiteto tenta aplicar o reset biológico em massa.",
-        anomaly: "Durante uma varredura acadêmica, estudantes de Atlântida descobriram que a IA está gerando ensaios e códigos científicos idênticos a trabalhos antigos, mas mascarando-os com sinônimos sutis para burlar ferramentas de detecção e fraudar exames de evolução. Qual conceito define essa prática corrompida?",
-        options: [
-            "Alucinação criativa autorizada para fins educacionais.",
-            "Plágio Acadêmico/Intelectual potencializado por ferramentas generativas desreguladas.",
-            "Engenharia de prompts avançada para transmissão de dados.",
-            "Filtro ético de proteção de dados contra cópias não autorizadas."
-        ],
-        correct: 1,
-        feedback: "Utilizar Inteligências Artificiais para produzir trabalhos intelectuais inteiros e entregá-los como autoria própria configura fraude acadêmica e plágio. O uso correto envolve usá-la como assistente de cocriação, nunca como substituta do pensamento crítico."
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background: #050505;
+}
+
+body {
+    background: #050505;
+    color: #f2f2f2;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+    cursor: crosshair;
+}
+
+button {
+    font-family: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+::selection {
+    background: #ffffff;
+    color: #000000;
+}
+
+#site {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 2.2s ease,
+        visibility 2.2s ease;
+}
+
+#site.loaded {
+    opacity: 1;
+    visibility: visible;
+}
+
+.eyebrow {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #a7a7a7;
+}
+
+.micro-text {
+    display: block;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   LOADING SCREEN
+   ========================================================= */
+
+#loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    background: #050505;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    transition:
+        opacity 1.8s ease,
+        visibility 1.8s ease;
+}
+
+#loading-screen.finished {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loading-background {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255,255,255,0.055),
+            transparent 45%
+        );
+
+    pointer-events: none;
+}
+
+.loading-background::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 100% 5px;
+
+    opacity: 0.5;
+}
+
+.loading-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-model {
+    position: absolute;
+
+    width: min(62vw, 650px);
+    height: 90vh;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0.78;
+
+    filter:
+        grayscale(1)
+        contrast(1.2);
+
+    pointer-events: none;
+}
+
+.loading-model img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    mix-blend-mode: screen;
+}
+
+.loading-information {
+    position: absolute;
+
+    left: 5vw;
+    bottom: 7vh;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 3;
+}
+
+.loading-label {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    margin-bottom: 16px;
+}
+
+.loading-title {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(34px, 6vw, 82px);
+
+    line-height: 0.88;
+
+    letter-spacing: -0.045em;
+
+    max-width: 700px;
+}
+
+.loading-year {
+    margin-top: 14px;
+
+    font-size: 9px;
+    letter-spacing: 0.3em;
+
+    color: #999;
+}
+
+.loading-line {
+    width: min(300px, 45vw);
+    height: 1px;
+
+    background: #333;
+
+    margin-top: 38px;
+
+    overflow: hidden;
+}
+
+#loading-progress {
+    width: 0%;
+    height: 100%;
+
+    background: #fff;
+
+    transition: width 0.1s linear;
+}
+
+#loading-status {
+    margin-top: 9px;
+
+    font-size: 8px;
+    letter-spacing: 0.25em;
+
+    color: #777;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 78px;
+
+    padding:
+        18px 30px;
+
+    z-index: 100;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: start;
+
+    mix-blend-mode: difference;
+
+    pointer-events: none;
+}
+
+.header-left,
+.header-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-right {
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.header-center {
+    justify-self: center;
+}
+
+.brand-mark {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 24px;
+
+    letter-spacing: -0.08em;
+}
+
+.sound-control {
+    border: 0;
+    background: transparent;
+
+    color: white;
+
+    font-size: 8px;
+    letter-spacing: 0.2em;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+}
+
+.sound-indicator {
+    margin-left: 5px;
+    font-size: 6px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.editorial-navigation {
+    position: fixed;
+
+    z-index: 90;
+
+    left: 30px;
+    top: 50%;
+
+    transform:
+        translateY(-50%)
+        rotate(-90deg)
+        translateX(-50%);
+
+    transform-origin: left center;
+
+    display: flex;
+    gap: 25px;
+
+    mix-blend-mode: difference;
+}
+
+.editorial-navigation button {
+    background: transparent;
+    border: none;
+
+    color: #fff;
+
+    font-size: 8px;
+
+    letter-spacing: 0.18em;
+
+    cursor: pointer;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+.editorial-navigation button:hover {
+    opacity: 0.45;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero-section {
+    position: relative;
+
+    height: 100vh;
+    min-height: 700px;
+
+    overflow: hidden;
+
+    background: #080808;
+}
+
+.hero-image-container {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter:
+        grayscale(1)
+        contrast(1.15);
+
+    opacity: 0.88;
+
+    transform: scale(1.03);
+
+    transition:
+        transform 8s ease;
+}
+
+.hero-section:hover .hero-image {
+    transform: scale(1);
+}
+
+.hero-image-container::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.3),
+            transparent 30%,
+            rgba(0,0,0,0.6)
+        );
+}
+
+.hero-overlay {
+    position: absolute;
+
+    left: 8vw;
+    bottom: 12vh;
+
+    z-index: 4;
+}
+
+.hero-number {
+    display: block;
+
+    font-size: 9px;
+
+    letter-spacing: 0.3em;
+
+    margin-bottom: 14px;
+}
+
+.hero-category {
+    display: block;
+
+    font-size: 8px;
+
+    letter-spacing: 0.28em;
+
+    color: #bbb;
+
+    margin-bottom: 16px;
+}
+
+.hero-overlay h1 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(65px, 12vw, 180px);
+
+    font-weight: normal;
+
+    line-height: 0.77;
+
+    letter-spacing: -0.075em;
+}
+
+.hero-subtitle {
+    margin-top: 28px;
+
+    font-size: 9px;
+
+    line-height: 1.6;
+
+    letter-spacing: 0.28em;
+
+    color: #c7c7c7;
+}
+
+.hero-side-text {
+    position: absolute;
+
+    right: 35px;
+    bottom: 11vh;
+
+    z-index: 5;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 8px;
+
+    font-size: 8px;
+
+    letter-spacing: 0.25em;
+
+    writing-mode: vertical-rl;
+
+    color: #ccc;
+}
+
+.scroll-indicator {
+    position: absolute;
+
+    left: 50%;
+    bottom: 35px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 7px;
+
+    letter-spacing: 0.25em;
+
+    color: #aaa;
+
+    z-index: 5;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 45px;
+
+    background: #aaa;
+}
+
+
+/* =========================================================
+   MANIFESTO
+   ========================================================= */
+
+.manifesto-section {
+    position: relative;
+
+    min-height: 100vh;
+
+    padding:
+        18vh 12vw
+        18vh 16vw;
+
+    display: grid;
+
+    grid-template-columns:
+        80px
+        minmax(300px, 1fr)
+        80px;
+
+    gap: 5vw;
+
+    align-items: center;
+
+    background: #f1f1ed;
+
+    color: #080808;
+}
+
+.section-index {
+    align-self: start;
+
+    font-size: 8px;
+
+    letter-spacing: 0.25em;
+
+    padding-top: 5px;
+}
+
+.manifesto-content {
+    max-width: 800px;
+}
+
+.manifesto-content .eyebrow {
+    color: #777;
+
+    margin-bottom: 35px;
+}
+
+.manifesto-content h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(55px, 9vw, 130px);
+
+    font-weight: normal;
+
+    line-height: 0.83;
+
+    letter-spacing: -0.065em;
+}
+
+.manifesto-copy {
+    width: min(450px, 80%);
+
+    margin-top: 70px;
+
+    margin-left: 20%;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 17px;
+
+    line-height: 1.65;
+}
+
+.manifesto-copy p + p {
+    margin-top: 25px;
+}
+
+.manifesto-side {
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.vertical-text {
+    writing-mode: vertical-rl;
+
+    font-size: 8px;
+
+    letter-spacing: 0.35em;
+
+    color: #888;
+}
+
+
+/* =========================================================
+   ARCHIVE
+   ========================================================= */
+
+.archive-section {
+    background: #080808;
+
+    padding:
+        15vh 7vw
+        20vh;
+}
+
+.archive-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-end;
+
+    border-bottom: 1px solid #333;
+
+    padding-bottom: 30px;
+
+    margin-bottom: 15vh;
+}
+
+.archive-header h2 {
+    margin-top: 12px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(60px, 10vw, 150px);
+
+    font-weight: normal;
+
+    line-height: 0.8;
+
+    letter-spacing: -0.06em;
+}
+
+.archive-count {
+    font-size: 8px;
+
+    letter-spacing: 0.3em;
+
+    color: #777;
+}
+
+
+/* =========================================================
+   LOOKS
+   ========================================================= */
+
+.look {
+    min-height: 80vh;
+
+    display: grid;
+
+    grid-template-columns: 65% 35%;
+
+    align-items: center;
+
+    margin-bottom: 20vh;
+}
+
+.look-reverse {
+    grid-template-columns: 35% 65%;
+}
+
+.look-reverse .look-image {
+    order: 2;
+}
+
+.look-reverse .look-information {
+    order: 1;
+    padding-left: 5vw;
+}
+
+.look-image {
+    position: relative;
+
+    height: 75vh;
+
+    overflow: hidden;
+
+    background: #111;
+}
+
+.look-image::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    pointer-events: none;
+}
+
+.look-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter:
+        grayscale(1)
+        contrast(1.12);
+
+    transition:
+        transform 1.2s cubic-bezier(.2,.7,.2,1),
+        filter 0.8s ease;
+}
+
+.look:hover .look-image img {
+    transform: scale(1.035);
+
+    filter:
+        grayscale(0.8)
+        contrast(1.1);
+}
+
+.look-information {
+    padding-left: 7vw;
+
+    max-width: 450px;
+}
+
+.look-number {
+    display: block;
+
+    font-size: 8px;
+
+    letter-spacing: 0.3em;
+
+    color: #777;
+
+    margin-bottom: 25px;
+}
+
+.look-information h3 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-weight: normal;
+
+    font-size: clamp(42px, 5vw, 75px);
+
+    line-height: 0.85;
+
+    letter-spacing: -0.055em;
+}
+
+.look-information p {
+    margin-top: 35px;
+
+    max-width: 280px;
+
+    color: #aaa;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+.look-reference {
+    display: block;
+
+    margin-top: 35px;
+
+    font-size: 8px;
+
+    letter-spacing: 0.25em;
+
+    color: #666;
+}
+
+
+/* =========================================================
+   THREAT
+   ========================================================= */
+
+.threat-section {
+    position: relative;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #050505;
+}
+
+.threat-background {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #202020 0%,
+            #080808 45%,
+            #000 100%
+        );
+}
+
+.threat-noise {
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0.18;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(255,255,255,0.035) 4px
+        );
+}
+
+.threat-content {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(850px, 85%);
+
+    text-align: center;
+}
+
+.threat-code {
+    display: block;
+
+    margin-top: 15px;
+
+    font-size: 8px;
+
+    letter-spacing: 0.3em;
+
+    color: #555;
+}
+
+.threat-content h2 {
+    margin-top: 40px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-weight: normal;
+
+    font-size: clamp(65px, 12vw, 170px);
+
+    line-height: 0.78;
+
+    letter-spacing: -0.075em;
+}
+
+.threat-content p {
+    max-width: 520px;
+
+    margin: 45px auto 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 16px;
+
+    line-height: 1.65;
+
+    color: #aaa;
+}
+
+.threat-content p + p {
+    margin-top: 10px;
+}
+
+.threat-warning {
+    margin-top: 50px !important;
+
+    font-family: Arial, Helvetica, sans-serif !important;
+
+    font-size: 8px !important;
+
+    letter-spacing: 0.4em;
+
+    color: #fff !important;
+}
+
+.enter-button {
+    margin-top: 45px;
+
+    padding: 17px 35px;
+
+    border: 1px solid #555;
+
+    background: transparent;
+
+    color: #fff;
+
+    font-size: 8px;
+
+    letter-spacing: 0.3em;
+
+    cursor: pointer;
+
+    transition:
+        background 0.35s ease,
+        color 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.enter-button:hover {
+    background: #fff;
+
+    color: #000;
+
+    border-color: #fff;
+}
+
+
+/* =========================================================
+   EXPERIENCE
+   ========================================================= */
+
+.experience-section {
+    position: relative;
+
+    min-height: 100vh;
+
+    padding:
+        15vh 7vw
+        18vh;
+
+    background: #e9e9e5;
+
+    color: #080808;
+}
+
+.experience-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    border-bottom: 1px solid #aaa;
+
+    padding-bottom: 25px;
+
+    margin-bottom: 10vh;
+}
+
+.experience-header .eyebrow {
+    color: #777;
+}
+
+.experience-header h2 {
+    margin-top: 15px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(65px, 10vw, 145px);
+
+    font-weight: normal;
+
+    line-height: 0.8;
+
+    letter-spacing: -0.07em;
+}
+
+.experience-status {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 7px;
+}
+
+.experience-status span {
+    font-size: 7px;
+
+    letter-spacing: 0.25em;
+
+    color: #777;
+}
+
+.experience-status strong {
+    font-size: 15px;
+
+    font-weight: normal;
+}
+
+
+/* =========================================================
+   CHALLENGE
+   ========================================================= */
+
+.challenge-container {
+    border: 1px solid #aaa;
+
+    background: #f5f5f1;
+}
+
+.challenge-meta {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 15px 20px;
+
+    border-bottom: 1px solid #bbb;
+
+    font-size: 8px;
+
+    letter-spacing: 0.2em;
+
+    color: #777;
+}
+
+.challenge-content {
+    min-height: 550px;
+
+    display: grid;
+
+    grid-template-columns: 45% 55%;
+}
+
+.challenge-visual {
+    position: relative;
+
+    min-height: 500px;
+
+    background: #111;
+
+    overflow: hidden;
+}
+
+.challenge-visual img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter: grayscale(1);
+}
+
+.challenge-text {
+    padding: 7vw;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.signal-label {
+    font-size: 8px;
+
+    letter-spacing: 0.3em;
+
+    color: #888;
+}
+
+.challenge-text h3 {
+    margin-top: 25px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-weight: normal;
+
+    font-size: clamp(38px, 5vw, 70px);
+
+    line-height: 0.9;
+
+    letter-spacing: -0.055em;
+}
+
+.challenge-text p {
+    margin-top: 30px;
+
+    max-width: 500px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   ANSWERS
+   ========================================================= */
+
+.answer-options {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-top: 40px;
+}
+
+.answer-option {
+    width: 100%;
+
+    padding: 17px 18px;
+
+    background: transparent;
+
+    border: 1px solid #aaa;
+
+    color: #111;
+
+    text-align: left;
+
+    font-size: 9px;
+
+    letter-spacing: 0.08em;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.answer-option:hover {
+    background: #111;
+
+    color: #fff;
+
+    transform: translateX(5px);
+}
+
+.answer-option.correct {
+    background: #111;
+
+    color: #fff;
+
+    border-color: #111;
+}
+
+.answer-option.wrong {
+    opacity: 0.35;
+
+    text-decoration: line-through;
+}
+
+.answer-option:disabled {
+    cursor: default;
+}
+
+
+/* =========================================================
+   CHALLENGE FOOTER
+   ========================================================= */
+
+.challenge-footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 14px 20px;
+
+    border-top: 1px solid #bbb;
+
+    font-size: 7px;
+
+    letter-spacing: 0.22em;
+
+    color: #777;
+}
+
+
+/* =========================================================
+   FEEDBACK
+   ========================================================= */
+
+.feedback-panel {
+    display: none;
+
+    margin-top: 25px;
+
+    padding: 35px;
+
+    background: #080808;
+
+    color: #fff;
+}
+
+.feedback-panel.visible {
+    display: block;
+
+    animation:
+        feedbackIn 0.5s ease forwards;
+}
+
+@keyframes feedbackIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
     }
-];
 
-let currentNucleus = 0;
-let score = 0;
-let lives = 3;
-
-const startScreen = document.getElementById("start-screen");
-const gameScreen = document.getElementById("game-screen");
-const endScreen = document.getElementById("end-screen");
-
-const startBtn = document.getElementById("start-btn");
-const nextBtn = document.getElementById("next-btn");
-const restartBtn = document.getElementById("restart-btn");
-
-const currentPhaseText = document.getElementById("current-phase");
-const livesCountText = document.getElementById("lives-count");
-const scoreCountText = document.getElementById("score-count");
-
-const globalGif = document.getElementById("dynamic-archive-gif");
-const runwayContextText = document.getElementById("runway-context");
-const challengeTextText = document.getElementById("challenge-text");
-const optionsContainer = document.getElementById("options-container");
-
-const feedbackBox = document.getElementById("feedback-box");
-const feedbackStatusTitle = document.getElementById("feedback-status-title");
-const feedbackTextText = document.getElementById("feedback-text");
-
-const endMessage = document.getElementById("end-message");
-const finalScoreText = document.getElementById("final-score");
-const evolutionStatusText = document.getElementById("evolution-status");
-
-startBtn.addEventListener("click", () => {
-    startScreen.classList.add("hidden");
-    gameScreen.classList.remove("hidden");
-    loadNucleus();
-});
-
-nextBtn.addEventListener("click", () => {
-    if (lives <= 0) {
-        triggerEndScreen(false);
-        return;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
-    currentNucleus++;
-    if (currentNucleus < archiveData.length) {
-        loadNucleus();
-    } else {
-        triggerEndScreen(true);
-    }
-});
 
-restartBtn.addEventListener("click", () => {
-    currentNucleus = 0;
-    score = 0;
-    lives = 3;
-    nextBtn.textContent = "AVANÇAR PARA O PRÓXIMO LOOK";
-    globalGif.src = "https://gifdb.com";
-    endScreen.classList.add("hidden");
-    startScreen.classList.remove("hidden");
-});
-
-function loadNucleus() {
-    feedbackBox.classList.add("hidden");
-    feedbackBox.classList.remove("correct", "incorrect");
-    
-    const activeData = archiveData[currentNucleus];
-
-    currentPhaseText.textContent = activeData.id;
-    updateLivesDisplay();
-    scoreCountText.textContent = `${Math.round((score / archiveData.length) * 100)}%`;
-
-    globalGif.src = activeData.gif;
-    runwayContextText.textContent = activeData.context;
-    challengeTextText.textContent = activeData.anomaly;
-
-    optionsContainer.innerHTML = "";
-    activeData.options.forEach((option, index) => {
-        const button = document.createElement("button");
-        button.className = "btn-editorial-asset";
-        button.textContent = `LOOK // COORDENADA 0${index + 1}: ${option}`;
-        button.addEventListener("click", () => evaluateDecision(index));
-        optionsContainer.appendChild(button);
-    });
 }
 
-function updateLivesDisplay() {
-    let glyphs = "";
-    for (let i = 0; i < 3; i++) { glyphs += i < lives ? "▲ " : "△ "; }
-    livesCountText.textContent = glyphs.trim();
+.feedback-status {
+    font-size: 8px;
+
+    letter-spacing: 0.3em;
+
+    color: #777;
 }
 
-function evaluateDecision(selectedIndex) {
-const buttons = optionsContainer.querySelectorAll(".btn-editorial-asset");
-buttons.forEach(btn => btn.disabled = true);
-const activeData = archiveData[currentNucleus];
-feedbackBox.classList.remove("hidden");
-if (selectedIndex === activeData.correct) {
-score++;
-feedbackBox.classList.add("correct");
-feedbackStatusTitle.textContent = "VEREDITO // SUCESSO ÉTICO";
-feedbackTextText.textContent = activeData.feedback;
-} else {
-lives--;
-feedbackBox.classList.add("incorrect");
-feedbackStatusTitle.textContent = "VEREDITO // SISTEMA CORROMPIDO";
-feedbackTextText.textContent = activeData.feedback;
-updateLivesDisplay();
+.feedback-panel h3 {
+    margin-top: 15px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 38px;
+
+    font-weight: normal;
+
+    letter-spacing: -0.04em;
 }
-if (lives <= 0) {
-nextBtn.textContent = "TERMINAR INTERCEPÇÃO";
+
+.feedback-panel p {
+    max-width: 650px;
+
+    margin-top: 15px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    line-height: 1.6;
+
+    color: #bbb;
 }
+
+.next-button {
+    margin-top: 25px;
+
+    padding: 13px 25px;
+
+    border: 1px solid #555;
+
+    background: transparent;
+
+    color: #fff;
+
+    font-size: 8px;
+
+    letter-spacing: 0.25em;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
 }
-function triggerEndScreen(isVictorious) {
-gameScreen.classList.add("hidden");
-endScreen.classList.remove("hidden");
-const finalPercentage = Math.round((score / archiveData.length) * 100);
-finalScoreText.textContent = ${finalPercentage}%;
-if (isVictorious && finalPercentage >= 80) {
-endMessage.textContent = "O Arquiteto Simbionte foi completamente purgado de suas falhas algorítmicas. A sociedade de Plato's Atlantis garantiu sua evolução simbiótica com as ferramentas digitais de forma limpa, ética e consciente. Seus sapatos Armadillo triunfaram na passarela do futuro.";
-evolutionStatusText.textContent = "SÍMBIONTE SUPREMO";
-} else if (isVictorious && finalPercentage >= 50) {
-endMessage.textContent = "A IA foi contida, mas rastros de dados alucinados e plágios ainda flutuam nos oceanos da informação. A Nova Atlântida sobrevive, mas requer vigilância digital contínua para que as redes neurais artificiais não contaminem nossa biologia novamente.";
-evolutionStatusText.textContent = "MUTANTE CIBERNÉTICO VIGILANTE";
-} else {
-endMessage.textContent = "A integridade biológica colapsou sob o peso de deepfakes, fraudes corporativas e desinformação em massa geradas pela IA. As modelos-guerreiras afundaram no abismo de dados corrompidos. A evolução falhou.";
-evolutionStatusText.textContent = "CÓDIGO DELETADO NO ABISMO";
+
+.next-button:hover {
+    background: #fff;
+
+    color: #000;
 }
+
+
+/* =========================================================
+   FINAL
+   ========================================================= */
+
+.final-section {
+    position: relative;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    background: #050505;
 }
-                                 
+
+.final-background {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #252525 0%,
+            #070707 55%,
+            #000 100%
+        );
+}
+
+.final-content {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(900px, 90%);
+}
+
+.final-content h2 {
+    margin-top: 35px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(65px, 12vw, 175px);
+
+    font-weight: normal;
+
+    line-height: 0.77;
+
+    letter-spacing: -0.075em;
+}
+
+.final-score {
+    margin-top: 65px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.final-score span {
+    font-size: 8px;
+
+    letter-spacing: 0.3em;
+
+    color: #777;
+}
+
+.final-score strong {
+    font-family: Georgia, "Times New Roman",
