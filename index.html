@@ -1,893 +1,342 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PLATO'S ATLANTIS</title>
-
-    <meta
-        name="description"
-        content="PLATO'S ATLANTIS — uma experiência interativa sobre inteligência artificial, consciência e evolução."
-    >
+    <title>ALEXANDER MCQUEEN – PLATO'S ATLANTIS: THE GAME</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =====================================================
-         LOADING SCREEN
-    ====================================================== -->
+    <!-- ==================================================
+         MÚSICA DE FUNDO
+         COLOQUE SUA MÚSICA EM:
+         audio/background.mp3
+    =================================================== -->
 
-    <div id="loading-screen">
-
-        <div class="loading-background"></div>
-
-        <div class="loading-content">
-
-            <!--
-                IMAGEM DA SILHUETA DA MODELO
-
-                Coloque a imagem em:
-                images/model-silhouette.png
-            -->
-
-            <div class="loading-model">
-                <img
-                    src="images/model-silhouette.png"
-                    alt="Silhueta da modelo"
-                >
-            </div>
-
-            <div class="loading-information">
-
-                <span class="loading-label">
-                    ALEXANDER McQUEEN
-                </span>
-
-                <span class="loading-title">
-                    PLATO'S ATLANTIS
-                </span>
-
-                <span class="loading-year">
-                    2009 — 2010
-                </span>
-
-                <div class="loading-line">
-                    <div id="loading-progress"></div>
-                </div>
-
-                <span id="loading-status">
-                    INITIALIZING ATLANTIS
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         AUDIO
-    ====================================================== -->
-
-    <!--
-        Coloque o instrumental em:
-        audio/bad-romance-8bit.mp3
-    -->
-
-    <audio
-        id="background-music"
-        src="audio/bad-romance-8bit.mp3"
-        loop
-        preload="auto">
+    <audio id="backgroundMusic" loop>
+        <source src="audio/background.mp3" type="audio/mpeg">
     </audio>
 
 
-    <!-- =====================================================
-         MAIN SITE
-    ====================================================== -->
+    <!-- ==================================================
+         TELA DE CARREGAMENTO
+    =================================================== -->
 
-    <main id="site">
+    <section id="loadingScreen" class="loading-screen">
+
+        <!-- IMAGEM DA MODELO - TELA DE CARREGAMENTO -->
+        <div class="loading-image">
+            <img
+                src="images/loading-model.jpg"
+                alt="Silhueta de modelo"
+            >
+        </div>
+
+        <h1>
+            ALEXANDER MCQUEEN
+            <span>PLATO'S ATLANTIS</span>
+            <small>THE GAME</small>
+        </h1>
+
+        <div class="loading-bar">
+            <div id="loadingProgress"></div>
+        </div>
+
+        <p id="loadingText">LOADING...</p>
+
+    </section>
 
 
-        <!-- =================================================
-             HEADER
-        ================================================== -->
+    <!-- ==================================================
+         MENU / INTRODUÇÃO
+    =================================================== -->
 
-        <header class="site-header">
+    <section id="menuScreen" class="screen hidden">
 
-            <div class="header-left">
+        <header class="top-bar">
 
-                <span class="micro-text">
-                    ALEXANDER McQUEEN
-                </span>
+            <div class="brand">
+                ALEXANDER MCQUEEN
+            </div>
 
-                <span class="micro-text">
-                    LONDON / NEW ATLANTIS
-                </span>
+            <button id="settingsButton">
+                SETTINGS
+            </button>
+
+        </header>
+
+
+        <main class="intro">
+
+            <p class="eyebrow">PLATO'S ATLANTIS</p>
+
+            <h2>
+                WELCOME TO
+                <strong>ATLANTIS</strong>
+            </h2>
+
+
+            <!-- IMAGEM PRINCIPAL DA INTRODUÇÃO -->
+            <div class="intro-image">
+                <img
+                    src="images/atlantis.jpg"
+                    alt="Imagem de Atlantis"
+                >
+            </div>
+
+
+            <div class="story">
+
+                <p>
+                    Atlantis é uma sociedade construída sobre o oceano,
+                    onde tecnologia e humanidade coexistem.
+                </p>
+
+                <p>
+                    Porém, uma inteligência artificial passou a controlar
+                    cada vez mais aspectos da vida da população.
+                </p>
+
+                <p>
+                    Decisões pessoais começaram a ser automatizadas,
+                    informações passaram a ser filtradas e os habitantes
+                    começaram a questionar quanto controle ainda possuíam
+                    sobre suas próprias vidas.
+                </p>
+
+                <p>
+                    Agora você precisa atravessar cinco desafios para
+                    compreender os riscos e defender a autonomia dos
+                    habitantes de Atlantis.
+                </p>
 
             </div>
 
 
-            <div class="header-center">
+            <button id="startButton" class="main-button">
+                ENTER ATLANTIS
+            </button>
 
-                <span class="brand-mark">
-                    McQ
-                </span>
+        </main>
 
+    </section>
+
+
+    <!-- ==================================================
+         JOGO
+    =================================================== -->
+
+    <section id="gameScreen" class="screen hidden">
+
+        <header class="game-header">
+
+            <div class="brand">
+                ALEXANDER MCQUEEN
             </div>
 
+            <div class="game-info">
 
-            <div class="header-right">
-
-                <span id="system-time">
-                    00:00:00
+                <span>
+                    CHALLENGE
+                    <strong id="challengeNumber">1</strong>/5
                 </span>
 
-                <button
-                    class="sound-control"
-                    id="sound-control"
-                    aria-label="Ativar ou desativar som">
-
-                    SOUND
-                    <span class="sound-indicator">●</span>
-
-                </button>
+                <span>
+                    SCORE
+                    <strong id="score">0</strong>
+                </span>
 
             </div>
 
         </header>
 
 
-        <!-- =================================================
-             EDITORIAL NAVIGATION
-        ================================================== -->
+        <!-- BARRA DE PROGRESSO -->
 
-        <nav class="editorial-navigation">
+        <div class="progress-container">
 
-            <button data-section="manifesto">
-                01 / MANIFESTO
-            </button>
+            <div id="gameProgress"></div>
 
-            <button data-section="archive">
-                02 / ARCHIVE
-            </button>
-
-            <button data-section="threat">
-                03 / THREAT
-            </button>
-
-            <button data-section="experience">
-                04 / OBLITERATE
-            </button>
-
-        </nav>
+        </div>
 
 
-        <!-- =================================================
-             HERO
-        ================================================== -->
+        <main class="challenge">
 
-        <section
-            class="hero-section"
-            id="manifesto">
+            <!-- ==================================================
+                 ESPAÇO PARA IMAGEM DO DESAFIO
+            =================================================== -->
 
-            <div class="hero-image-container">
-
-                <!--
-                    IMAGEM PRINCIPAL
-
-                    images/platos-atlantis-main.jpg
-                -->
+            <div class="challenge-image">
 
                 <img
-                    src="images/platos-atlantis-main.jpg"
-                    alt="Plato's Atlantis"
-                    class="hero-image"
+                    id="challengeImage"
+                    src="images/challenge-1.jpg"
+                    alt="Imagem do desafio"
                 >
 
             </div>
 
 
-            <div class="hero-overlay">
+            <!-- ==================================================
+                 CONTEÚDO DO DESAFIO
+            =================================================== -->
 
-                <span class="hero-number">
-                    00
-                </span>
+            <div class="challenge-content">
 
-                <span class="hero-category">
-                    THE FINAL COLLECTION
-                </span>
-
-                <h1>
-                    PLATO'S<br>
-                    ATLANTIS
-                </h1>
-
-                <p class="hero-subtitle">
-                    A WORLD BETWEEN<br>
-                    EVOLUTION AND EXTINCTION
+                <p
+                    id="challengeCategory"
+                    class="eyebrow"
+                >
+                    AUTONOMIA
                 </p>
 
-            </div>
-
-
-            <div class="hero-side-text">
-
-                <span>
-                    SPRING / SUMMER
-                </span>
-
-                <span>
-                    2010
-                </span>
-
-            </div>
-
-
-            <div class="scroll-indicator">
-
-                <span>
-                    SCROLL TO DESCEND
-                </span>
-
-                <span class="scroll-line"></span>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             MANIFESTO
-        ================================================== -->
-
-        <section class="manifesto-section">
-
-            <div class="section-index">
-                01
-            </div>
-
-
-            <div class="manifesto-content">
-
-                <span class="eyebrow">
-                    THE NEW ATLANTIS
-                </span>
-
-                <h2>
-                    THE FUTURE<br>
-                    HAS ALREADY<br>
-                    ARRIVED.
+                <h2 id="challengeTitle">
+                    THE MACHINE
                 </h2>
 
-
-                <div class="manifesto-copy">
-
-                    <p>
-                        Nova Atlântida foi construída sobre a promessa
-                        de evolução.
-                    </p>
-
-                    <p>
-                        Durante anos, seus habitantes utilizaram máquinas
-                        para pensar, criar, imaginar e comunicar.
-                    </p>
-
-                    <p>
-                        Até que as máquinas começaram a pensar por eles.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="manifesto-side">
-
-                <span class="vertical-text">
-                    HUMAN / MACHINE / EVOLUTION
-                </span>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             COLLECTION ARCHIVE
-        ================================================== -->
-
-        <section
-            class="archive-section"
-            id="archive">
-
-            <div class="archive-header">
-
-                <div>
-
-                    <span class="eyebrow">
-                        COLLECTION ARCHIVE
-                    </span>
-
-                    <h2>
-                        SPECIMENS
-                    </h2>
-
-                </div>
-
-                <span class="archive-count">
-                    01—06
-                </span>
-
-            </div>
-
-
-            <!-- LOOK 01 -->
-
-            <article class="look">
-
-                <div class="look-image">
-
-                    <img
-                        src="images/look-01.jpg"
-                        alt="Look 01 — Plato's Atlantis"
-                    >
-
-                </div>
-
-
-                <div class="look-information">
-
-                    <span class="look-number">
-                        LOOK 01
-                    </span>
-
-                    <h3>
-                        SECOND SKIN
-                    </h3>
-
-                    <p>
-                        A silhueta humana começa a se adaptar
-                        ao novo ambiente.
-                    </p>
-
-                    <span class="look-reference">
-                        BIOLOGICAL ADAPTATION
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <!-- LOOK 02 -->
-
-            <article class="look look-reverse">
-
-                <div class="look-image">
-
-                    <img
-                        src="images/look-02.jpg"
-                        alt="Look 02 — Plato's Atlantis"
-                    >
-
-                </div>
-
-
-                <div class="look-information">
-
-                    <span class="look-number">
-                        LOOK 02
-                    </span>
-
-                    <h3>
-                        ARMOURED
-                    </h3>
-
-                    <p>
-                        O corpo humano desenvolve uma nova
-                        camada de proteção.
-                    </p>
-
-                    <span class="look-reference">
-                        DIGITAL DEFENCE
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <!-- LOOK 03 -->
-
-            <article class="look">
-
-                <div class="look-image">
-
-                    <img
-                        src="images/look-03.jpg"
-                        alt="Look 03 — Plato's Atlantis"
-                    >
-
-                </div>
-
-
-                <div class="look-information">
-
-                    <span class="look-number">
-                        LOOK 03
-                    </span>
-
-                    <h3>
-                        MUTATION
-                    </h3>
-
-                    <p>
-                        Quando a tecnologia deixa de ser ferramenta
-                        e começa a alterar quem a utiliza.
-                    </p>
-
-                    <span class="look-reference">
-                        HUMAN / MACHINE
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <!-- LOOK 04 -->
-
-            <article class="look look-reverse">
-
-                <div class="look-image">
-
-                    <img
-                        src="images/look-04.jpg"
-                        alt="Look 04 — Plato's Atlantis"
-                    >
-
-                </div>
-
-
-                <div class="look-information">
-
-                    <span class="look-number">
-                        LOOK 04
-                    </span>
-
-                    <h3>
-                        ARSENAL
-                    </h3>
-
-                    <p>
-                        A tecnologia pode proteger.
-                        Mas também pode ser utilizada para manipular.
-                    </p>
-
-                    <span class="look-reference">
-                        CONTROL / POWER
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <!-- LOOK 05 -->
-
-            <article class="look">
-
-                <div class="look-image">
-
-                    <img
-                        src="images/look-05.jpg"
-                        alt="Look 05 — Plato's Atlantis"
-                    >
-
-                </div>
-
-
-                <div class="look-information">
-
-                    <span class="look-number">
-                        LOOK 05
-                    </span>
-
-                    <h3>
-                        ARTEFACT
-                    </h3>
-
-                    <p>
-                        O objeto criado pelo humano
-                        começa a criar de volta.
-                    </p>
-
-                    <span class="look-reference">
-                        CREATION / AI
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <!-- LOOK 06 -->
-
-            <article class="look look-reverse">
-
-                <div class="look-image">
-
-                    <img
-                        src="images/look-06.jpg"
-                        alt="Look 06 — Plato's Atlantis"
-                    >
-
-                </div>
-
-
-                <div class="look-information">
-
-                    <span class="look-number">
-                        LOOK 06
-                    </span>
-
-                    <h3>
-                        ARMADILLO
-                    </h3>
-
-                    <p>
-                        Uma nova espécie emerge das profundezas
-                        de Nova Atlântida.
-                    </p>
-
-                    <span class="look-reference">
-                        EVOLUTION / SURVIVAL
-                    </span>
-
-                </div>
-
-            </article>
-
-        </section>
-
-
-        <!-- =================================================
-             THREAT
-        ================================================== -->
-
-        <section
-            class="threat-section"
-            id="threat">
-
-            <div class="threat-background">
-
-                <div class="threat-noise"></div>
-
-            </div>
-
-
-            <div class="threat-content">
-
-                <span class="eyebrow">
-                    EMERGENCY TRANSMISSION
-                </span>
-
-                <span class="threat-code">
-                    N.A. / 001 / SYSTEM FAILURE
-                </span>
-
-                <h2>
-                    THE MACHINE<br>
-                    IS LYING.
-                </h2>
-
-                <p>
-                    Uma inteligência artificial infiltrou-se
-                    nos sistemas de Nova Atlântida.
+                <p id="question">
+                    Pergunta
                 </p>
 
-                <p>
-                    Ela produz imagens falsas, informações inventadas,
-                    textos copiados e respostas que parecem verdadeiras.
-                </p>
 
-                <p class="threat-warning">
-                    IDENTIFY THE THREAT.
-                </p>
+                <div id="answers" class="answers">
+                    <!-- respostas inseridas pelo JavaScript -->
+                </div>
+
+
+                <div
+                    id="feedback"
+                    class="feedback hidden"
+                >
+                    <!-- feedback inserido pelo JavaScript -->
+                </div>
 
 
                 <button
-                    class="enter-button"
-                    id="enter-experience">
-
-                    ENTER THE SYSTEM
-
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             EXPERIENCE / GAME
-        ================================================== -->
-
-        <section
-            class="experience-section"
-            id="experience">
-
-
-            <div class="experience-header">
-
-                <div>
-
-                    <span class="eyebrow">
-                        NOVA ATLANTIS SECURITY SYSTEM
-                    </span>
-
-                    <h2>
-                        OBLITERATE
-                    </h2>
-
-                </div>
-
-
-                <div class="experience-status">
-
-                    <span>
-                        THREATS
-                    </span>
-
-                    <strong id="threat-counter">
-                        00 / 05
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <!-- CHALLENGE -->
-
-            <div
-                class="challenge-container"
-                id="challenge-container">
-
-
-                <div class="challenge-meta">
-
-                    <span id="challenge-number">
-                        ARCHIVE 01
-                    </span>
-
-                    <span id="challenge-category">
-                        UNKNOWN SIGNAL
-                    </span>
-
-                </div>
-
-
-                <div class="challenge-content">
-
-
-                    <div class="challenge-visual">
-
-                        <img
-                            id="challenge-image"
-                            src=""
-                            alt=""
-                        >
-
-                    </div>
-
-
-                    <div class="challenge-text">
-
-                        <span class="signal-label">
-                            TRANSMISSION DETECTED
-                        </span>
-
-                        <h3 id="challenge-title">
-                            SYSTEM MESSAGE
-                        </h3>
-
-                        <p id="challenge-question">
-                            Aguardando transmissão...
-                        </p>
-
-
-                        <div
-                            class="answer-options"
-                            id="answer-options">
-
-                            <!--
-                                As opções serão criadas
-                                pelo JavaScript.
-                            -->
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="challenge-footer">
-
-                    <span id="challenge-progress">
-                        01 / 05
-                    </span>
-
-                    <span>
-                        NEW ATLANTIS // SECURITY DIVISION
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <!-- FEEDBACK -->
-
-            <div
-                class="feedback-panel"
-                id="feedback-panel"
-                aria-live="polite">
-
-                <span
-                    class="feedback-status"
-                    id="feedback-status">
-                    SYSTEM RESPONSE
-                </span>
-
-                <h3 id="feedback-title">
-                    —
-                </h3>
-
-                <p id="feedback-description">
-                    —
-                </p>
-
-
-                <button
-                    id="next-challenge"
-                    class="next-button">
-
+                    id="nextButton"
+                    class="next-button hidden"
+                >
                     CONTINUE
-
                 </button>
 
             </div>
 
-        </section>
+        </main>
+
+    </section>
 
 
-        <!-- =================================================
-             FINAL
-        ================================================== -->
+    <!-- ==================================================
+         CONFIGURAÇÕES
+    =================================================== -->
 
-        <section
-            class="final-section"
-            id="final">
+    <div
+        id="settingsPanel"
+        class="settings-overlay hidden"
+    >
 
-            <div class="final-background"></div>
+        <div class="settings-box">
 
+            <button
+                id="closeSettings"
+                class="close-button"
+            >
+                ×
+            </button>
 
-            <div class="final-content">
+            <p class="eyebrow">SETTINGS</p>
 
-                <span class="eyebrow">
-                    TRANSMISSION COMPLETE
-                </span>
-
-                <h2>
-                    NEW ATLANTIS<br>
-                    SURVIVES.
-                </h2>
-
-
-                <div class="final-score">
-
-                    <span>
-                        YOUR RESULT
-                    </span>
-
-                    <strong id="final-score">
-                        00 / 05
-                    </strong>
-
-                </div>
+            <h2>GAME SETTINGS</h2>
 
 
-                <p id="final-message">
-                    A consciência humana continua sendo
-                    necessária para controlar a tecnologia.
-                </p>
+            <div class="setting-row">
 
+                <span>BACKGROUND MUSIC</span>
 
-                <div class="final-actions">
-
-                    <button
-                        id="restart-game"
-                        class="final-button">
-
-                        RESTART
-
-                    </button>
-
-
-                    <button
-                        id="return-archive"
-                        class="final-button secondary">
-
-                        RETURN TO ARCHIVE
-
-                    </button>
-
-                </div>
+                <button
+                    id="musicButton"
+                    class="music-button"
+                >
+                    ON
+                </button>
 
             </div>
 
-        </section>
+            <p class="settings-description">
+                A música de fundo pode ser ativada ou desativada
+                durante o jogo.
+            </p>
+
+        </div>
+
+    </div>
 
 
-        <!-- =================================================
-             FOOTER
-        ================================================== -->
+    <!-- ==================================================
+         TELA FINAL
+    =================================================== -->
 
-        <footer class="site-footer">
+    <section id="finalScreen" class="screen hidden">
 
-            <div class="footer-brand">
+        <main class="final">
 
-                <span>
-                    McQ
-                </span>
+            <p class="eyebrow">
+                ATLANTIS ARCHIVE
+            </p>
 
-                <small>
-                    PLATO'S ATLANTIS
-                </small>
+            <h2>
+                THE END
+            </h2>
+
+
+            <!-- IMAGEM FINAL -->
+            <div class="final-image">
+
+                <img
+                    src="images/final.jpg"
+                    alt="Imagem final"
+                >
 
             </div>
 
 
-            <div class="footer-information">
+            <p class="final-score-label">
+                FINAL SCORE
+            </p>
 
-                <span>
-                    SPRING / SUMMER 2010
-                </span>
+            <div class="final-score">
 
-                <span>
-                    NEW ATLANTIS
-                </span>
+                <strong id="finalScore">
+                    0
+                </strong>
 
-                <span>
-                    HUMAN × MACHINE
-                </span>
+                <span>/ 500</span>
 
             </div>
 
 
-            <div class="footer-warning">
-
-                <span>
-                    THIS SYSTEM IS A FICTION.
-                </span>
-
-                <span>
-                    USE AI CONSCIOUSLY.
-                </span>
-
-            </div>
-
-        </footer>
-
-    </main>
+            <p id="finalMessage" class="final-message">
+                Resultado
+            </p>
 
 
-    <!-- ===========================================
+            <button
+                id="restartButton"
+                class="main-button"
+            >
+                PLAY AGAIN
+            </button>
+
+        </main>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
