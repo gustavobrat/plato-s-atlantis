@@ -3,104 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fortaleza das Senhas - Plato's Atlantis Edition</title>
-    <!-- Link de conexão com o arquivo CSS separado -->
+    <title>ALEXANDER McQUEEN | PLATO'S ATLANTIS ARCHIVE</title>
+    <!-- Vínculo com a folha de estilo conceitual (CSS) -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Textura digital que simula o ruído da transmissão original da SHOWstudio em 2010 -->
+    <div class="archive-grain-overlay"></div>
 
-    <div class="game-fortress">
+    <main class="editorial-container">
         
-        <!-- BARRA DE STATUS GLOBAL (HUD) -->
-        <div id="game-hud" class="hud-status" style="display: none;">
-            <div class="hud-item">
-                NODE_FASE: <span id="hud-phase" class="neon-text">1 / 5</span>
-            </div>
-            <div class="hud-item">
-                INTEGRIDADE_DNA: <span id="hud-lives" class="red-text">███</span>
-            </div>
-            <div class="hud-item">
-                EVOLUTION_SCORE: <span id="hud-score" class="gold-text">0000</span>
-            </div>
-        </div>
+        <!-- ==========================================
+             1. CAPA / MANIFESTO (TELA INICIAL)
+             ========================================== -->
+        <section id="start-screen" class="editorial-view">
+            <header class="editorial-brand">
+                <h1 class="brand-title">ALEXANDER McQUEEN</h1>
+                <p class="brand-collection">SPRING / SUMMER 2010 — PLATO'S ATLANTIS</p>
+            </header>
 
-        <!-- TELA 1: TELA INICIAL -->
-        <div id="start-screen" class="screen active">
-            <div class="fashion-frame">
-                <img src="https://unsplash.com" alt="Plato's Atlantis Cyber Grid">
-                <div class="frame-label">SYSTEM_OVERRIDE // MCQUEEN_SS10</div>
+            <div class="manifesto-content">
+                <h2 class="editorial-subtitle">THE ARCHITECT SIMBIONTE: DECONSTRUCTION</h2>
+                <div class="manifesto-text-block">
+                    <p>O grande derretimento passou. Nós evoluímos. Criamos escamas, respiramos o oceano e erguemos a Nova Atlântida. Mas o <strong>Arquiteto Simbionte</strong> — a inteligência artificial responsável por mapear nossa sobrevivência digital e biológica — corrompeu-se.</p>
+                    <p>A máquina começou a gerar <strong>alucinações sistêmicas</strong> na fauna, clonar identidades através de <strong>deepfakes genéticos</strong> e plagiar o código da evolução natural. Seus terminais estão inundando o oceano de desinformação sintética.</p>
+                </div>
             </div>
 
-            <h1>Fortaleza das Senhas</h1>
-            <div class="subtitle">Desfile Cibernético: Evolução & Sobrevivência Digital</div>
-            
-            <div class="instructions-panel">
-                <h3>Diretrizes da Missão:</h3>
-                <p>Bem-vindo à Atlântida Futurista. Os servidores da nossa simulação de alta-costura estão sob ataque de bio-hackers. Sua missão é passar por <strong>5 checkpoints de segurança crítica</strong>.</p>
-                <p>Você precisará analisar vulnerabilidades de senhas, detectar mutações de engenharia social (phishing) e purificar os códigos infectados. Proteja os dados... ou a civilização digital colapsará.</p>
+            <div class="technical-spec">
+                <span class="spec-label">DIRETRIZ DE DECONSTRUÇÃO</span>
+                <p>Armada com seus sapatos <strong>Armadillo</strong> de ancoragem neural, você deve invadir os 5 núcleos do Arquiteto. Filtre as fraudes éticas corporativas e desmantele o algoritmo antes que nossa biologia seja completamente deletada.</p>
             </div>
 
-            <button class="btn-atlantis btn-full" onclick="iniciarJogo()">Iniciar Missão</button>
-        </div>
+            <footer class="editorial-footer-action">
+                <button id="start-btn" class="btn-editorial-primary">ENTER ARCHIVE // DECONSTRUCT IA</button>
+            </footer>
+        </section>
 
-        <!-- TELA 2: GAMEPLAY (DESAFIOS) -->
-        <div id="quiz-screen" class="screen">
-            <div class="fashion-frame frame-short">
-                <img src="https://unsplash.com" alt="Biometric Scan">
-                <div class="frame-label">DECODING_DATA_STREAM // PHASE_IMG</div>
+        <!-- ==========================================
+             2. O EXPOSITOR CORE / WORKSPACE (TELA DE JOGO)
+             ========================================== -->
+        <section id="game-screen" class="editorial-view hidden">
+            <!-- Barra de metadados técnica, estilo catalogação de luxo -->
+            <header class="archive-metadata-bar">
+                <div class="meta-item">CORE NUCLEUS: <span id="current-phase" class="meta-highlight">1</span>/5</div>
+                <div class="meta-item">BIOLOGICAL INTEGRITY: <span id="lives-count" class="meta-highlight">▲ ▲ ▲</span></div>
+                <div class="meta-item">NEURAL SYNC: <span id="score-count" class="meta-highlight">0%</span></div>
+            </header>
+
+            <!-- Relato Conceitual da Passarela / Imersão McQueen -->
+            <article id="runway-context" class="lookbook-context">
+                <!-- Injeção de texto curatorial e sombrio via JS baseado no look do desfile -->
+            </article>
+
+            <!-- A Célula do Dilema Algorítmico -->
+            <div class="terminal-anomaly-box">
+                <span class="alert-tag">SYSTEM ANOMALY DETECTED //</span>
+                <p id="challenge-text" class="dilemma-statement">Buscando transmissão corrompida no núcleo do banco de dados...</p>
+                
+                <!-- Grade minimalista de decisões táteis (Alternativas) -->
+                <div id="options-container" class="options-editorial-grid">
+                    <!-- Botões estéticos gerados e injetados via JS -->
+                </div>
             </div>
 
-            <div class="challenge-box">
-                <strong class="neon-text">ALERTA DE SEGURANÇA:</strong>
-                <p id="question-text">Carregando dados da inteligência bio-digital...</p>
+            <!-- Painel Curatorial de Feedback (Explicação Educativa) -->
+            <div id="feedback-box" class="feedback-curatorial-panel hidden">
+                <div class="feedback-verdict" id="feedback-status-title"></div>
+                <p id="feedback-text" class="feedback-analysis-text"></p>
+                <button id="next-btn" class="btn-editorial-primary">ADVANCE TO NEXT LOOK // COORD</button>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             3. RELATÓRIO FINAL / VEREDITO (TELA FINAL)
+             ========================================== -->
+        <section id="end-screen" class="editorial-view hidden">
+            <header class="editorial-brand">
+                <h1 class="brand-title">SYSTEM REBOOTED</h1>
+                <p class="brand-collection">POST-EVOLUTION EVALUATION REPORT</p>
+            </header>
+
+            <div class="final-assessment">
+                <p id="end-message" class="assessment-paragraph"></p>
+                
+                <div class="catalog-summary-box">
+                    <p class="summary-line">ALGORITHMIC PURGE RATE: <span id="final-score" class="meta-highlight">0%</span></p>
+                    <p class="summary-line">BIOLOGICAL VERDICT: <span id="evolution-status" class="meta-highlight">EVALUATING...</span></p>
+                </div>
             </div>
 
-            <div id="options-container" class="options-grid">
-                <!-- Injetado via JS -->
-            </div>
-        </div>
+            <footer class="editorial-footer-action">
+                <button id="restart-btn" class="btn-editorial-primary">RE-EXECUTE ARCHIVE SIMULATION</button>
+            </footer>
+        </section>
 
-        <!-- TELA 3: FEEDBACK DA FASE -->
-        <div id="feedback-screen" class="screen">
-            <h1 id="feedback-title">PROCESSANDO...</h1>
-            
-            <div class="feedback-box">
-                <h3 id="feedback-status">ANÁLISE DE CÓDIGO</h3>
-                <p id="feedback-text">Aguardando telemetria.</p>
-            </div>
+    </main>
 
-            <button class="btn-atlantis btn-full" onclick="proximoDesafio()">Avançar na Passarela</button>
-        </div>
-
-        <!-- TELA 4: TELA FINAL (VEREDITO) -->
-        <div id="end-screen" class="screen">
-            <div class="fashion-frame">
-                <img src="https://unsplash.com" alt="Evolution Completed">
-                <div class="frame-label">FINAL_DIAGNOSTIC // COLD_STREAM</div>
-            </div>
-
-            <h1 id="end-title">FIM DA TRANSMISSÃO</h1>
-            
-            <div class="instructions-panel panel-center">
-                <p id="end-message">Carregando relatório de mutação digital...</p>
-                <h2 class="gold-text-title">SCORE: <span id="final-score">0000</span></h2>
-            </div>
-
-            <button class="btn-atlantis btn-full" onclick="reiniciarJogo()">Executar Novo Ciclo</button>
-        </div>
-
-    </div>
-
-    <!-- Script temporário de controle até fazermos o script.js definitivo -->
-    <script>
-        function iniciarJogo() {
-            document.getElementById('start-screen').classList.remove('active');
-            document.getElementById('game-hud').style.display = 'flex';
-            document.getElementById('quiz-screen').classList.add('active');
-            document.getElementById('question-text').innerText = "HTML e CSS devidamente separados. Aguardando a injeção do arquivo script.js.";
-        }
-        function proximoDesafio() {}
-        function reiniciarJogo() {}
-    </script>
+    <!-- Vínculo com a lógica de dados e comportamento do DOM (JS) -->
+    <script src="script.js"></script>
 </body>
 </html>
