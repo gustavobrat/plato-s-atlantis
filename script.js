@@ -189,7 +189,7 @@ const challenges = [
         title: "THE MACHINE",
 
         image:
-            "images/challenge-1.jpg",
+            "challenge-1.jpg",
 
         question:
             "Uma inteligência artificial começa a tomar decisões pessoais pelos habitantes de Atlantis. Qual é o principal problema dessa situação?",
