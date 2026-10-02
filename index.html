@@ -3,110 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALEXANDER McQUEEN | PLATO'S ATLANTIS ARCHIVE</title>
+    <title>ALEXANDER McQUEEN | ARQUIVO PLATO'S ATLANTIS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="archive-grain-overlay"></div>
 
-    <main class="editorial-container">
+    <!-- TELA DE CARREGAMENTO EDITORIAL -->
+    <div id="loading-screen" class="loading-overlay">
+        <div class="loading-wrapper">
+            <!-- Silhueta Minimalista da Modelo McQueen feita em CSS -->
+            <div class="model-silhouette-frame">
+                <div class="silhouette-head"></div>
+                <div class="silhouette-torso"></div>
+                <div class="silhouette-legs"></div>
+            </div>
+            <h2 class="loading-brand">ALEXANDER McQUEEN</h2>
+            <p class="loading-status">INICIALIZANDO ARQUIVO DIGITAL<span class="dots">...</span></p>
+        </div>
+    </div>
+
+    <main class="editorial-viewport hidden" id="main-viewport">
         
-        <!-- ==========================================
-             1. CAPA / MANIFESTO (TELA INICIAL)
-             ========================================== -->
-        <section id="start-screen" class="editorial-view">
-            <header class="editorial-brand">
-                <h1 class="brand-title">ALEXANDER McQUEEN</h1>
-                <p class="brand-collection">SPRING / SUMMER 2010 — PLATO'S ATLANTIS</p>
-            </header>
-
-            <!-- ESPAÇO PARA O GIF DA CAPA -->
-            <div class="editorial-media-frame">
-                <!-- Você pode colocar uma URL fixa aqui ou deixar o JS carregar -->
-                <img id="cover-gif" src="https://gifdb.com" alt="Plato's Atlantis Runway">
-            </div>
-
-            <div class="manifesto-content">
-                <h2 class="editorial-subtitle">THE ARCHITECT SIMBIONTE: DECONSTRUCTION</h2>
-                <div class="manifesto-text-block">
-                    <p>O grande derretimento passou. Nós evoluímos. Criamos escamas, respiramos o oceano e erguemos a Nova Atlântida. Mas o <strong>Arquiteto Simbionte</strong> — a inteligência artificial responsável por mapear nossa sobrevivência digital e biológica — corrompeu-se.</p>
-                    <p>A máquina começou a gerar <strong>alucinações sistêmicas</strong> na fauna, clonar identidades através de <strong>deepfakes genéticos</strong> e plagiar o código da evolução natural. Seus terminais estão inundando o oceano de desinformação sintética.</p>
-                </div>
-            </div>
-
-            <div class="technical-spec">
-                <span class="spec-label">DIRETRIZ DE DECONSTRUÇÃO</span>
-                <p>Armada com seus sapatos <strong>Armadillo</strong> de ancoragem neural, você deve invadir os 5 núcleos do Arquiteto. Filtre as fraudes éticas corporativas e desmantele o algoritmo antes que nossa biologia seja completamente deletada.</p>
-            </div>
-
-            <footer class="editorial-footer-action">
-                <button id="start-btn" class="btn-editorial-primary">ENTER ARCHIVE // DECONSTRUCT IA</button>
-            </footer>
-        </section>
-
-        <!-- ==========================================
-             2. O EXPOSITOR CORE / WORKSPACE (TELA DE JOGO)
-             ========================================== -->
-        <section id="game-screen" class="editorial-view hidden">
-            <header class="archive-metadata-bar">
-                <div class="meta-item">CORE NUCLEUS: <span id="current-phase" class="meta-highlight">1</span>/5</div>
-                <div class="meta-item">BIOLOGICAL INTEGRITY: <span id="lives-count" class="meta-highlight">▲ ▲ ▲</span></div>
-                <div class="meta-item">NEURAL SYNC: <span id="score-count" class="meta-highlight">0%</span></div>
-            </header>
-
-            <!-- ESPAÇO PARA O GIF DINÂMICO DE CADA LOOK / FASE -->
-            <div class="editorial-media-frame">
-                <img id="challenge-gif" src="" alt="Look de Passarela Corrompido">
-            </div>
-
-            <article id="runway-context" class="lookbook-context">
-                <!-- Injeção de texto curatorial via JS -->
-            </article>
-
-            <div class="terminal-anomaly-box">
-                <span class="alert-tag">SYSTEM ANOMALY DETECTED //</span>
-                <p id="challenge-text" class="dilemma-statement">Buscando transmissão corrompida no núcleo do banco de dados...</p>
-                
-                <div id="options-container" class="options-editorial-grid">
-                    <!-- Botões estéticos gerados via JS -->
-                </div>
-            </div>
-
-            <div class="feedback-curatorial-panel hidden" id="feedback-box">
-                <div class="feedback-verdict" id="feedback-status-title"></div>
-                <p id="feedback-text" class="feedback-analysis-text"></p>
-                <button id="next-btn" class="btn-editorial-primary">ADVANCE TO NEXT LOOK // COORD</button>
+        <!-- PAINEL ESQUERDO: A MÍDIA MONUMENTAL (Fixa e Gigante) -->
+        <section class="media-column">
+            <div class="media-wrapper">
+                <img id="dynamic-archive-gif" src="https://gifdb.com" alt="Registro de Passarela Alexander McQueen">
             </div>
         </section>
 
-        <!-- ==========================================
-             3. RELATÓRIO FINAL / VEREDITO (TELA FINAL)
-             ========================================== -->
-        <section id="end-screen" class="editorial-view hidden">
-            <header class="editorial-brand">
-                <h1 class="brand-title">SYSTEM REBOOTED</h1>
-                <p class="brand-collection">POST-EVOLUTION EVALUATION REPORT</p>
-            </header>
+        <!-- PAINEL DIREITO: O CONTEÚDO EDITORIAL E DECISÕES -->
+        <section class="content-column">
+            
+            <!-- TELA INICIAL: MANIFESTO -->
+            <div id="start-screen" class="editorial-pane">
+                <header class="brand-header">
+                    <h1 class="brand-title">ALEXANDER McQUEEN</h1>
+                    <p class="brand-sub">PRIMAVERA / VERÃO 2010 — PLATO'S ATLANTIS</p>
+                </header>
 
-            <!-- ESPAÇO PARA O GIF DO ENCERRAMENTO -->
-            <div class="editorial-media-frame">
-                <img id="end-gif" src="https://gifdb.com" alt="Fim da Evolução">
+                <div class="manifesto-body">
+                    <span class="system-tag">// ENTRADA DE CATÁLOGO: O ARQUITETO SIMBIONTE</span>
+                    <p class="editorial-p">O grande derretimento passou. Nós evoluímos. Criamos escamas, respiramos o oceano e erguemos a Nova Atlântida. Mas o <strong>Arquiteto Simbionte</strong> — a inteligência artificial responsável por mapear nossa sobrevivência digital e biológica — corrompeu-se.</p>
+                    <p class="editorial-p">A máquina começou a gerar <strong>alucinações sistêmicas</strong> na fauna, clonar identidades através de <strong>deepfakes genéticos</strong> e plagiar o código da evolução natural. Seus terminais estão inundando o oceano de desinformação sintética.</p>
+                </div>
+
+                <div class="directive-box">
+                    <span class="directive-tag">DIRETRIZ DE DECONSTRUÇÃO</span>
+                    <p>Armada com seus sapatos <strong>Armadillo</strong> de ancoragem neural, você deve invadir os 5 núcleos do Arquiteto. Filtre as fraudes éticas corporativas e desmantele o algoritmo antes que nossa biologia seja deletada.</p>
+                </div>
+
+                <button id="start-btn" class="btn-editorial-action">ENTRAR NO ARQUIVO // ACESSAR NÚCLEO</button>
             </div>
 
-            <div class="final-assessment">
-                <p id="end-message" class="assessment-paragraph"></p>
-                
-                <div class="catalog-summary-box">
-                    <p class="summary-line">ALGORITHMIC PURGE RATE: <span id="final-score" class="meta-highlight">0%</span></p>
-                    <p class="summary-line">BIOLOGICAL VERDICT: <span id="evolution-status" class="meta-highlight">EVALUATING...</span></p>
+            <!-- TELA DE JOGO: NÚCLEOS -->
+            <div id="game-screen" class="editorial-pane hidden">
+                <header class="metadata-bar">
+                    <div class="meta-block">NÚCLEO REGULADOR: <span id="current-phase" class="highlight">1</span>/5</div>
+                    <div class="meta-block">INTEGRIDADE BIOLÓGICA: <span id="lives-count" class="highlight">▲ ▲ ▲</span></div>
+                    <div class="meta-block">SINCRONIA NEURAL: <span id="score-count" class="highlight">0%</span></div>
+                </header>
+
+                <div class="anomaly-display">
+                    <article id="runway-context" class="curatorial-quote">
+                        <!-- Injetado via JS -->
+                    </article>
+
+                    <span class="system-tag alert">// ANOMALIA DE SISTEMA DETECTADA</span>
+                    <h2 id="challenge-text" class="dilemma-title">Buscando transmissão corrompida no núcleo...</h2>
+                </div>
+
+                <div id="options-container" class="options-stack">
+                    <!-- Botões injetados via JS -->
+                </div>
+
+                <!-- Painel Curatorial de Feedback -->
+                <div id="feedback-box" class="feedback-overlay hidden">
+                    <h3 id="feedback-status-title" class="feedback-title">VEREDITO</h3>
+                    <p id="feedback-text" class="feedback-desc"></p>
+                    <button id="next-btn" class="btn-editorial-action">AVANÇAR PARA O PRÓXIMO LOOK</button>
                 </div>
             </div>
 
-            <footer class="editorial-footer-action">
-                <button id="restart-btn" class="btn-editorial-primary">RE-EXECUTE ARCHIVE SIMULATION</button>
-            </footer>
-        </section>
+            <!-- TELA FINAL: VEREDITO -->
+            <div id="end-screen" class="editorial-pane hidden">
+                <header class="brand-header">
+                    <h1 class="brand-title">SISTEMA REINICIALIZADO</h1>
+                    <p class="brand-sub">RELATÓRIO DE AVALIAÇÃO PÓS-EVOLUÇÃO</p>
+                </header>
 
+                <div class="assessment-container">
+                    <p id="end-message" class="editorial-p center"></p>
+                    
+                    <div class="summary-card">
+                        <div class="summary-row">TAXA DE EXPURGO ALGORÍTMICO: <span id="final-score" class="highlight">0%</span></div>
+                        <div class="summary-row">VEREDITO BIOLÓGICO: <span id="evolution-status" class="highlight">AVALIANDO...</span></div>
+                    </div>
+                </div>
+
+                <button id="restart-btn" class="btn-editorial-action">EXECUTAR NOVA SIMULAÇÃO</button>
+            </div>
+
+        </section>
     </main>
 
     <script src="script.js"></script>
