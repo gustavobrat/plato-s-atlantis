@@ -1107,5 +1107,115 @@ restartButton.addEventListener(
 );
 
 
+/* =========================================================
+   11. CONFIGURAÇÕES
+========================================================= */
 
-/* ==========================
+
+/*
+   Abrir configurações.
+*/
+
+settingsButton.addEventListener(
+    "click",
+    () => {
+
+        settingsPanel.classList.remove(
+            "hidden"
+        );
+
+    }
+);
+
+
+/*
+   Fechar configurações.
+*/
+
+closeSettings.addEventListener(
+    "click",
+    () => {
+
+        settingsPanel.classList.add(
+            "hidden"
+        );
+
+    }
+);
+
+
+/*
+   Também permite fechar clicando
+   fora da caixa de configurações.
+*/
+
+settingsPanel.addEventListener(
+    "click",
+    (event) => {
+
+
+        if (
+            event.target ===
+            settingsPanel
+        ) {
+
+            settingsPanel.classList.add(
+                "hidden"
+            );
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   12. MÚSICA DE FUNDO
+========================================================= */
+
+
+/*
+   O botão alterna entre:
+
+   ON
+   OFF
+*/
+
+
+musicButton.addEventListener(
+    "click",
+    () => {
+
+
+        musicEnabled =
+            !musicEnabled;
+
+
+        if (musicEnabled) {
+
+
+            musicButton.textContent =
+                "ON";
+
+
+            backgroundMusic
+                .play()
+                .catch(() => {});
+
+        }
+
+
+        else {
+
+
+            musicButton.textContent =
+                "OFF";
+
+
+            backgroundMusic.pause();
+
+        }
+
+    }
+);
