@@ -1,7 +1,13 @@
-/* =====================================================
+/* =========================================================
    PLATO'S ATLANTIS — THE GAME
-   SIMPLE LUXURY / 2008–2010 INSPIRED INTERFACE
-===================================================== */
+   ALEXANDER MCQUEEN
+   EDITORIAL DIGITAL INTERFACE / 2008–2010
+   ========================================================= */
+
+
+/* =========================================================
+   CONFIGURAÇÕES GERAIS
+   ========================================================= */
 
 * {
     box-sizing: border-box;
@@ -9,768 +15,1538 @@
     padding: 0;
 }
 
+
 :root {
-    --black: #050708;
-    --dark: #0b1113;
-    --blue: #142a30;
-    --cyan: #8ebfc5;
-    --white: #e9eeee;
-    --gray: #8c999b;
-    --line: #2b3d40;
+
+    --black: #030506;
+
+    --black-soft: #080d0f;
+
+    --ocean-dark: #0c181c;
+
+    --ocean: #132a30;
+
+    --cyan: #91c4ca;
+
+    --cyan-dark: #557e83;
+
+    --white: #eeeeea;
+
+    --gray-light: #b1b9b9;
+
+    --gray: #788386;
+
+    --gray-dark: #39474a;
+
+    --line: #29383b;
+
 }
 
-html,
-body {
+
+html {
     min-height: 100%;
 }
 
+
 body {
-    background: var(--black);
+
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            #030506 0%,
+            #071012 45%,
+            #030506 100%
+        );
+
     color: var(--white);
-    font-family: Georgia, "Times New Roman", serif;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    overflow-x: hidden;
 }
 
 
-/* =====================================================
-   GERAL
-===================================================== */
+/* =========================================================
+   TEXTURA SUTIL
+   =========================================================
+
+   Cria uma textura quase imperceptível para evitar que
+   o fundo pareça uma página preta totalmente lisa.
+
+   A intenção é lembrar interfaces editoriais antigas.
+   ========================================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    opacity: 0.16;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 3px,
+            rgba(255,255,255,0.015) 4px
+        );
+}
+
+
+/* =========================================================
+   ELEMENTOS GERAIS
+   ========================================================= */
 
 button {
-    font-family: Arial, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     cursor: pointer;
+
+    outline: none;
 }
 
+
+button:focus-visible {
+
+    outline: 1px solid var(--cyan);
+
+    outline-offset: 4px;
+}
+
+
+img {
+
+    max-width: 100%;
+}
+
+
 .hidden {
+
     display: none !important;
 }
 
+
 .screen {
-    min-height: 100vh;
+
     width: 100%;
+
+    min-height: 100vh;
 }
 
 
-/* =====================================================
+/* =========================================================
    LOADING SCREEN
-===================================================== */
+   ========================================================= */
 
 .loading-screen {
+
     position: fixed;
+
     inset: 0;
-    z-index: 100;
+
+    z-index: 1000;
 
     display: flex;
-    flex-direction: column;
+
     justify-content: center;
+
     align-items: center;
 
     background:
+
         radial-gradient(
-            circle at center,
-            #18353c 0%,
-            #081012 50%,
-            #020304 100%
+            ellipse at center,
+            #17353b 0%,
+            #0a171a 35%,
+            #030506 75%
         );
 
     opacity: 1;
 
-    transition: opacity 1.2s ease;
+    transition:
+        opacity 1.2s ease;
 }
 
+
 .loading-screen.fade-out {
+
     opacity: 0;
+
     pointer-events: none;
 }
 
 
-/* IMAGEM DA MODELO */
+/* =========================================================
+   CONTEÚDO DO LOADING
+   ========================================================= */
+
+.loading-editorial {
+
+    width: min(620px, 90%);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   IMAGEM DA SILHUETA
+   =========================================================
+
+   IMPORTANTE:
+
+   A imagem utilizada aqui é:
+
+   images/loading-model.png
+
+   "contain" foi escolhido propositalmente.
+
+   Dessa maneira, se a PNG tiver fundo transparente,
+   a silhueta inteira será preservada e não será cortada.
+
+   ========================================================= */
 
 .loading-image {
-    width: 300px;
-    height: 300px;
 
-    margin-bottom: 30px;
+    width: 300px;
+
+    height: 340px;
+
+    margin-bottom: 35px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
 
     overflow: hidden;
 
-    border: 1px solid var(--line);
+    background:
 
-    background: #080d0f;
+        radial-gradient(
+            ellipse at center,
+            #18343a 0%,
+            #0b171a 55%,
+            #050809 100%
+        );
+
+    border:
+
+        1px solid
+        rgba(145, 196, 202, 0.28);
+
+    position: relative;
 }
+
+
+/* Pequena moldura interna */
+
+.loading-image::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 10px;
+
+    border:
+
+        1px solid
+        rgba(145, 196, 202, 0.12);
+
+    pointer-events: none;
+}
+
 
 .loading-image img {
+
     width: 100%;
+
     height: 100%;
 
-    object-fit: cover;
-
     display: block;
+
+    object-fit: contain;
+
+    object-position: center;
+
 }
 
 
-/* TÍTULO */
+/* =========================================================
+   TÍTULO DO LOADING
+   ========================================================= */
 
-.loading-screen h1 {
+.loading-title {
+
+    width: 100%;
+
     text-align: center;
-
-    font-size: 20px;
-    font-weight: normal;
-
-    letter-spacing: 5px;
 }
 
-.loading-screen h1 span {
-    display: block;
 
-    margin-top: 10px;
+.loading-brand {
 
-    font-size: 32px;
-}
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-.loading-screen h1 small {
-    display: block;
-
-    margin-top: 10px;
-
-    font-family: Arial, sans-serif;
     font-size: 10px;
 
-    letter-spacing: 7px;
+    letter-spacing: 6px;
+
+    color: var(--gray-light);
+
+    margin-bottom: 14px;
 }
 
 
-/* BARRA */
+.loading-title h1 {
+
+    font-size: 30px;
+
+    font-weight: normal;
+
+    letter-spacing: 8px;
+
+    line-height: 1.2;
+}
+
+
+.loading-subtitle {
+
+    margin-top: 12px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 8px;
+
+    color: var(--cyan);
+}
+
+
+/* =========================================================
+   LOADING BAR
+   ========================================================= */
+
+.loading-area {
+
+    width: 300px;
+
+    margin-top: 38px;
+}
+
 
 .loading-bar {
-    width: 300px;
+
+    width: 100%;
+
     height: 2px;
 
-    margin-top: 35px;
+    background: #263538;
 
-    background: #263639;
+    overflow: hidden;
 }
 
+
 #loadingProgress {
-    width: 0;
+
+    width: 0%;
+
     height: 100%;
 
     background: var(--cyan);
 
-    transition: width .1s linear;
+    transition:
+        width 0.1s linear;
 }
 
-#loadingText {
-    margin-top: 12px;
 
-    font-family: Arial, sans-serif;
-    font-size: 9px;
+#loadingText {
+
+    margin-top: 11px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 8px;
 
     letter-spacing: 4px;
 
     color: var(--gray);
+
+    text-align: left;
 }
 
 
-/* =====================================================
-   HEADER
-===================================================== */
+/* =========================================================
+   CABEÇALHOS
+   ========================================================= */
 
 .top-bar,
 .game-header {
-    height: 75px;
+
+    width: 100%;
+
+    min-height: 74px;
 
     display: flex;
-    justify-content: space-between;
+
     align-items: center;
 
-    padding: 0 5%;
+    justify-content: space-between;
 
-    border-bottom: 1px solid var(--line);
+    padding:
+
+        0
+        5%;
+
+    border-bottom:
+
+        1px solid
+        var(--line);
+
+    background:
+
+        rgba(3, 5, 6, 0.88);
 }
+
+
+/* =========================================================
+   MARCA
+   ========================================================= */
 
 .brand {
-    font-family: Arial, sans-serif;
 
-    font-size: 11px;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 10px;
 
     letter-spacing: 5px;
+
+    white-space: nowrap;
 }
 
-.top-bar button {
-    border: 0;
-    background: none;
+
+.edition {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
 
     color: var(--gray);
 
-    font-size: 9px;
-
-    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
 
-/* =====================================================
+/* =========================================================
+   BOTÃO DO MENU
+   ========================================================= */
+
+.text-button {
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--gray-light);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    padding: 10px 0;
+
+    transition:
+        color 0.3s ease;
+}
+
+
+.text-button:hover {
+
+    color: var(--cyan);
+}
+
+
+/* =========================================================
    INTRODUÇÃO
-===================================================== */
+   ========================================================= */
 
 .intro {
-    width: min(850px, 90%);
 
-    margin: auto;
+    width: min(920px, 90%);
 
-    padding: 70px 0;
+    margin: 0 auto;
+
+    padding:
+
+        85px
+        0
+        100px;
 
     text-align: center;
 }
 
+
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
 .eyebrow {
-    font-family: Arial, sans-serif;
 
-    font-size: 9px;
-
-    letter-spacing: 5px;
+    margin-bottom: 18px;
 
     color: var(--cyan);
 
-    margin-bottom: 15px;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
 }
+
+
+/* =========================================================
+   TÍTULO PRINCIPAL
+   ========================================================= */
 
 .intro h2 {
-    font-size: 45px;
+
+    font-size: 42px;
 
     font-weight: normal;
+
+    letter-spacing: 1px;
+
+    line-height: 1.1;
 }
+
 
 .intro h2 strong {
+
     display: block;
 
-    font-size: 75px;
+    margin-top: 4px;
+
+    font-size: 82px;
 
     font-weight: normal;
+
+    letter-spacing: -2px;
+
+    color: var(--white);
 }
 
 
-/* =====================================================
-   IMAGEM DA INTRO
-===================================================== */
+/* =========================================================
+   LINHA EDITORIAL
+   ========================================================= */
+
+.intro h2::after {
+
+    content: "";
+
+    display: block;
+
+    width: 45px;
+
+    height: 1px;
+
+    margin:
+
+        25px
+        auto
+        0;
+
+    background: var(--cyan);
+}
+
+
+/* =========================================================
+   IMAGEM DA INTRODUÇÃO
+   ========================================================= */
 
 .intro-image {
+
+    position: relative;
+
     width: 100%;
-    height: 300px;
 
-    margin: 40px 0;
+    height: 350px;
 
-    border: 1px solid var(--line);
+    margin:
+
+        48px
+        0
+        50px;
 
     overflow: hidden;
 
-    background: var(--dark);
+    border:
+
+        1px solid
+        var(--line);
+
+    background: var(--black-soft);
 }
 
+
+.intro-image::before {
+
+    content: "ATLANTIS / 01";
+
+    position: absolute;
+
+    z-index: 2;
+
+    top: 15px;
+
+    left: 18px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+
+    color: rgba(255,255,255,0.65);
+}
+
+
 .intro-image img {
+
     width: 100%;
+
     height: 100%;
 
     display: block;
 
     object-fit: cover;
+
+    opacity: 0.78;
+
+    transition:
+        transform 1s ease,
+        opacity 0.5s ease;
 }
 
 
-/* =====================================================
+.intro-image:hover img {
+
+    transform: scale(1.025);
+
+    opacity: 0.9;
+}
+
+
+/* =========================================================
    HISTÓRIA
-===================================================== */
+   ========================================================= */
 
 .story {
-    max-width: 680px;
 
-    margin: auto;
+    max-width: 690px;
+
+    margin: 0 auto;
+
+    text-align: left;
 }
 
-.story p {
-    margin-bottom: 18px;
 
-    color: #b8c3c5;
+.story-label {
 
-    font-size: 16px;
+    margin-bottom: 22px;
+
+    color: var(--cyan);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 8px !important;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+}
+
+
+.story p:not(.story-label) {
+
+    margin-bottom: 20px;
+
+    color: #b9c3c4;
+
+    font-size: 15px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   COMO JOGAR
+   ========================================================= */
+
+.how-to-play {
+
+    max-width: 690px;
+
+    margin:
+
+        55px
+        auto
+        0;
+
+    padding:
+
+        35px
+        0;
+
+    border-top:
+
+        1px solid
+        var(--line);
+
+    border-bottom:
+
+        1px solid
+        var(--line);
+
+    text-align: left;
+}
+
+
+.how-to-play > p:not(.story-label) {
+
+    color: var(--gray-light);
+
+    font-size: 14px;
 
     line-height: 1.8;
+
+    margin-bottom: 20px;
 }
 
 
-/* =====================================================
-   BOTÕES
-===================================================== */
+.how-to-play ul {
+
+    padding-left: 20px;
+
+    color: var(--gray);
+
+    font-size: 13px;
+
+    line-height: 2;
+}
+
+
+/* =========================================================
+   BOTÃO PRINCIPAL
+   ========================================================= */
 
 .main-button {
-    margin-top: 30px;
 
-    padding: 15px 35px;
+    margin-top: 35px;
 
-    border: 1px solid var(--cyan);
+    padding:
+
+        15px
+        34px;
+
+    border:
+
+        1px solid
+        var(--cyan);
 
     background: transparent;
 
     color: var(--white);
 
-    font-size: 10px;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 8px;
 
     letter-spacing: 4px;
 
-    transition: .3s;
+    transition:
+
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
 }
 
+
 .main-button:hover {
+
+    background: var(--cyan);
+
+    border-color: var(--cyan);
+
+    color: var(--black);
+}
+
+
+/* =========================================================
+   INFORMAÇÕES DO JOGO
+   ========================================================= */
+
+.game-info {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 32px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    color: var(--gray);
+}
+
+
+.game-info strong {
+
+    color: var(--white);
+
+    font-weight: normal;
+}
+
+
+/* =========================================================
+   PROGRESSO DO JOGO
+   ========================================================= */
+
+.progress-container {
+
+    width: 90%;
+
+    max-width: 1100px;
+
+    height: 1px;
+
+    margin:
+
+        24px
+        auto
+        0;
+
+    background: #263538;
+}
+
+
+#gameProgress {
+
+    width: 20%;
+
+    height: 100%;
+
+    background: var(--cyan);
+
+    transition:
+        width 0.4s ease;
+}
+
+
+/* =========================================================
+   DESAFIO
+   ========================================================= */
+
+.challenge {
+
+    width: min(1100px, 90%);
+
+    min-height: 470px;
+
+    margin:
+
+        48px
+        auto
+        80px;
+
+    display: grid;
+
+    grid-template-columns:
+        44%
+        56%;
+
+    border-top:
+
+        1px solid
+        var(--line);
+
+    border-bottom:
+
+        1px solid
+        var(--line);
+}
+
+
+/* =========================================================
+   IMAGEM DO DESAFIO
+   ========================================================= */
+
+.challenge-image {
+
+    min-height: 470px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            ellipse at center,
+            #132b31,
+            #071012 70%
+        );
+
+    border-right:
+
+        1px solid
+        var(--line);
+}
+
+
+.challenge-image::after {
+
+    content: "PLATO'S ATLANTIS";
+
+    position: absolute;
+
+    bottom: 15px;
+
+    left: 18px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+
+    color: rgba(255,255,255,0.55);
+}
+
+
+.challenge-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    opacity: 0.82;
+}
+
+
+/* =========================================================
+   CONTEÚDO DO DESAFIO
+   ========================================================= */
+
+.challenge-content {
+
+    padding:
+
+        55px
+        55px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+.chapter-label {
+
+    margin-bottom: 14px;
+
+    color: var(--gray);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+}
+
+
+.challenge-content h2 {
+
+    margin-bottom: 25px;
+
+    font-size: 40px;
+
+    font-weight: normal;
+
+    line-height: 1.1;
+}
+
+
+.question {
+
+    margin-bottom: 28px;
+
+    color: #c5cdce;
+
+    font-size: 16px;
+
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   RESPOSTAS
+   ========================================================= */
+
+.answers {
+
+    display: grid;
+
+    gap: 8px;
+}
+
+
+.answer {
+
+    width: 100%;
+
+    padding:
+
+        14px
+        16px;
+
+    border:
+
+        1px solid
+        var(--line);
+
+    background:
+
+        rgba(255,255,255,0.01);
+
+    color: var(--white);
+
+    text-align: left;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+
+    transition:
+
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.answer:hover:not(:disabled) {
+
+    border-color: var(--cyan);
+
+    background:
+
+        rgba(145,196,202,0.04);
+}
+
+
+.answer:disabled {
+
+    cursor: default;
+}
+
+
+/* RESPOSTA CORRETA */
+
+.answer.correct {
+
+    border-color: #8ebdb1;
+
+    background:
+
+        rgba(100,160,140,0.10);
+}
+
+
+/* RESPOSTA INCORRETA */
+
+.answer.wrong {
+
+    border-color: #a77c7c;
+
+    background:
+
+        rgba(150,70,70,0.10);
+}
+
+
+/* =========================================================
+   FEEDBACK
+   ========================================================= */
+
+.feedback {
+
+    margin-top: 23px;
+
+    padding:
+
+        17px
+        18px;
+
+    border-left:
+
+        2px solid
+        var(--cyan);
+
+    background:
+
+        rgba(145,196,202,0.025);
+
+    color: #b9c3c4;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+.feedback strong {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--white);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   BOTÃO CONTINUE
+   ========================================================= */
+
+.next-button {
+
+    align-self: flex-start;
+
+    margin-top: 20px;
+
+    padding:
+
+        11px
+        25px;
+
+    border:
+
+        1px solid
+        var(--cyan);
+
+    background: transparent;
+
+    color: var(--white);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    transition:
+
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+
+.next-button:hover {
+
     background: var(--cyan);
 
     color: var(--black);
 }
 
 
-/* =====================================================
-   JOGO
-===================================================== */
-
-.game-info {
-    display: flex;
-
-    gap: 30px;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-    color: var(--gray);
-}
-
-.game-info strong {
-    color: var(--white);
-}
-
-
-/* PROGRESSO */
-
-.progress-container {
-    width: 90%;
-    max-width: 1100px;
-
-    height: 2px;
-
-    margin: 25px auto;
-
-    background: #263639;
-}
-
-#gameProgress {
-    width: 20%;
-    height: 100%;
-
-    background: var(--cyan);
-
-    transition: width .4s ease;
-}
-
-
-/* =====================================================
-   DESAFIO
-===================================================== */
-
-.challenge {
-    width: min(1100px, 90%);
-
-    margin: 50px auto;
-
-    display: grid;
-
-    grid-template-columns: 42% 58%;
-
-    min-height: 450px;
-}
-
-
-/* IMAGEM DO DESAFIO */
-
-.challenge-image {
-    min-height: 450px;
-
-    border: 1px solid var(--line);
-
-    overflow: hidden;
-
-    background: var(--dark);
-}
-
-.challenge-image img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-}
-
-
-/* TEXTO */
-
-.challenge-content {
-    padding: 30px 50px;
-}
-
-.challenge-content h2 {
-    font-size: 38px;
-
-    font-weight: normal;
-
-    margin-bottom: 25px;
-}
-
-#question {
-    color: #c4cccd;
-
-    font-size: 17px;
-
-    line-height: 1.7;
-
-    margin-bottom: 30px;
-}
-
-
-/* =====================================================
-   RESPOSTAS
-===================================================== */
-
-.answers {
-    display: grid;
-
-    gap: 10px;
-}
-
-.answer {
-    width: 100%;
-
-    padding: 16px;
-
-    border: 1px solid var(--line);
-
-    background: transparent;
-
-    color: var(--white);
-
-    text-align: left;
-
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 14px;
-
-    transition: .2s;
-}
-
-.answer:hover:not(:disabled) {
-    border-color: var(--cyan);
-}
-
-.answer:disabled {
-    cursor: default;
-}
-
-.answer.correct {
-    border-color: #8dbfaf;
-
-    background: rgba(100, 160, 140, .1);
-}
-
-.answer.wrong {
-    border-color: #ad7e7e;
-
-    background: rgba(150, 70, 70, .1);
-}
-
-
-/* =====================================================
-   FEEDBACK
-===================================================== */
-
-.feedback {
-    margin-top: 25px;
-
-    padding: 18px;
-
-    border-left: 2px solid var(--cyan);
-
-    color: #b8c3c5;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-}
-
-.feedback strong {
-    display: block;
-
-    margin-bottom: 5px;
-
-    color: var(--white);
-
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 3px;
-}
-
-
-/* =====================================================
-   NEXT
-===================================================== */
-
-.next-button {
-    margin-top: 20px;
-
-    padding: 12px 25px;
-
-    border: 1px solid var(--cyan);
-
-    background: transparent;
-
-    color: var(--white);
-
-    font-size: 9px;
-
-    letter-spacing: 3px;
-}
-
-
-/* =====================================================
+/* =========================================================
    SETTINGS
-===================================================== */
+   ========================================================= */
 
 .settings-overlay {
+
     position: fixed;
 
     inset: 0;
 
-    z-index: 50;
+    z-index: 500;
 
     display: flex;
 
     justify-content: center;
+
     align-items: center;
 
-    background: rgba(0, 0, 0, .85);
+    background:
+
+        rgba(0,0,0,0.88);
 }
 
+
 .settings-box {
+
     position: relative;
 
     width: min(500px, 90%);
 
-    padding: 40px;
+    padding:
 
-    background: #0b1113;
+        45px;
 
-    border: 1px solid var(--line);
+    background:
+
+        linear-gradient(
+            145deg,
+            #0d191c,
+            #060a0b
+        );
+
+    border:
+
+        1px solid
+        var(--line);
+
+    box-shadow:
+
+        0 25px 80px
+        rgba(0,0,0,0.6);
 }
+
 
 .settings-box h2 {
-    font-weight: normal;
 
     margin-bottom: 30px;
+
+    font-size: 28px;
+
+    font-weight: normal;
 }
 
+
 .close-button {
+
     position: absolute;
 
     top: 12px;
+
     right: 18px;
 
     border: 0;
 
-    background: none;
+    background: transparent;
 
-    color: var(--white);
+    color: var(--gray-light);
 
     font-size: 25px;
+
+    font-weight: normal;
+
+    transition:
+        color 0.2s ease;
 }
 
+
+.close-button:hover {
+
+    color: var(--cyan);
+}
+
+
 .setting-row {
+
     display: flex;
 
     justify-content: space-between;
+
     align-items: center;
 
-    padding: 20px 0;
+    padding:
 
-    border-top: 1px solid var(--line);
+        20px
+        0;
+
+    border-top:
+
+        1px solid
+        var(--line);
 }
 
-.setting-row span {
-    font-family: Arial, sans-serif;
 
-    font-size: 9px;
+.setting-row span {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 8px;
 
     letter-spacing: 3px;
 }
 
-.music-button {
-    padding: 8px 16px;
 
-    border: 1px solid var(--cyan);
+.music-button {
+
+    min-width: 58px;
+
+    padding:
+
+        8px
+        13px;
+
+    border:
+
+        1px solid
+        var(--cyan);
 
     background: transparent;
 
     color: var(--cyan);
 
-    font-size: 9px;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 8px;
 
     letter-spacing: 2px;
 }
 
+
 .settings-description {
-    margin-top: 15px;
+
+    margin-top: 16px;
 
     color: var(--gray);
 
-    font-size: 13px;
-
-    line-height: 1.6;
-}
-
-
-/* =====================================================
-   TELA FINAL
-===================================================== */
-
-.final {
-    width: min(800px, 90%);
-
-    margin: auto;
-
-    padding: 70px 0;
-
-    text-align: center;
-}
-
-.final h2 {
-    font-size: 50px;
-
-    font-weight: normal;
-}
-
-
-/* IMAGEM FINAL */
-
-.final-image {
-    width: 100%;
-    height: 280px;
-
-    margin: 40px 0;
-
-    border: 1px solid var(--line);
-
-    overflow: hidden;
-}
-
-.final-image img {
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    object-fit: cover;
-}
-
-
-/* PONTUAÇÃO */
-
-.final-score-label {
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 4px;
-
-    color: var(--gray);
-}
-
-.final-score {
-    margin-top: 10px;
-}
-
-.final-score strong {
-    font-size: 80px;
-
-    font-weight: normal;
-}
-
-.final-score span {
-    color: var(--gray);
-}
-
-.final-message {
-    max-width: 600px;
-
-    margin: 25px auto;
-
-    color: #b8c3c5;
+    font-size: 12px;
 
     line-height: 1.7;
 }
 
 
-/* =====================================================
-   MOBILE
-===================================================== */
+/* =========================================================
+   TELA FINAL
+   ========================================================= */
 
-@media (max-width: 750px) {
+.final {
 
-    .loading-image {
-        width: 230px;
-        height: 230px;
-    }
+    width: min(820px, 90%);
 
-    .loading-screen h1 {
-        font-size: 15px;
-    }
+    margin: 0 auto;
 
-    .loading-screen h1 span {
-        font-size: 24px;
-    }
+    padding:
 
-    .loading-bar {
-        width: 230px;
-    }
+        85px
+        0
+        100px;
 
-    .intro h2 {
-        font-size: 32px;
-    }
+    text-align: center;
+}
 
-    .intro h2 strong {
-        font-size: 55px;
-    }
 
-    .challenge {
-        grid-template-columns: 1fr;
-    }
+.final h2 {
 
-    .challenge-image {
-        min-height: 280px;
-    }
+    font-size: 55px;
 
-    .challenge-content {
-        padding: 30px 0;
-    }
+    font-weight: normal;
 
-    .challenge-content h2 {
-        font-size: 30px;
-    }
+    letter-spacing: 2px;
+}
 
-    .game-info {
-        gap: 12px;
-    }
 
-    .final h2 {
-        font-size: 38px;
-    }
+.final h2::after {
 
-       }
+    content: "";
+
+    display: block;
+
+    width: 45px;
+
+    height: 1px;
+
+    margin:
+
+        24px
+        auto
+        0;
+
+    background: var(--cyan);
+}
+
+
+/* =========================================================
+   IMAGEM FINAL
+   ========================================================= */
+
+.final-image {
+
+    width: 100%;
+
+    height: 310px;
+
+    margin:
+
+        48px
+        0;
+
+    overflow: hidden;
+
+    border:
+
+        1px solid
+        var(--line);
+
+    background: var(--black-soft);
+}
+
+
+.final-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    opacity: 0.8;
+}
+
+
+/* =========================================================
+   PONTUAÇÃO FINAL
+   ========================================================= */
+
+.final-score-label {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 5px;
+
+    color: var(--gray);
+}
+
+
+.final-score {
+
+    margin-top: 8px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items:
