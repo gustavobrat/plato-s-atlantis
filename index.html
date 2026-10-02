@@ -4,153 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fortaleza das Senhas - Plato's Atlantis Edition</title>
-    <style>
-        /* ESTILO COLECÃO MCQUEEN FUTURISTA 2010 */
-        :root {
-            --bg-deep-ocean: linear-gradient(135deg, #020813 0%, #0c1a30 50%, #052e3d 100%);
-            --neon-aqua: #00ffcc;
-            --cyber-gold: #d4af37;
-            --digital-glow: rgba(0, 255, 204, 0.3);
-            --glass-bg: rgba(12, 26, 48, 0.75);
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Courier New', Courier, monospace; /* Estilo programação */
-            background: var(--bg-deep-ocean);
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-        }
-
-        /* Container Principal do Desfile/Jogo */
-        .game-fortress {
-            width: 90%;
-            max-width: 900px;
-            background: var(--glass-bg);
-            border: 2px solid var(--neon-aqua);
-            box-shadow: 0 0 30px var(--digital-glow), inset 0 0 20px rgba(0,0,0,0.8);
-            border-radius: 16px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-            text-align: center;
-            position: relative;
-        }
-
-        /* Molduras de Fotos Alexander McQueen Style */
-        .fashion-frame {
-            width: 100%;
-            height: 180px;
-            margin-bottom: 20px;
-            border: 1px solid var(--cyber-gold);
-            position: relative;
-            overflow: hidden;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .fashion-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.6;
-            transition: opacity 0.5s;
-        }
-
-        .fashion-frame:hover img {
-            opacity: 0.9;
-        }
-
-        .frame-label {
-            position: absolute;
-            bottom: 5px;
-            left: 10px;
-            font-size: 10px;
-            color: var(--cyber-gold);
-            letter-spacing: 2px;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin: 10px 0;
-            text-shadow: 0 0 10px var(--neon-aqua);
-        }
-
-        .subtitle {
-            color: var(--cyber-gold);
-            font-size: 1.1rem;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-        }
-
-        /* Painel de Instruções */
-        .instructions-panel {
-            background: rgba(0, 0, 0, 0.4);
-            border-left: 4px solid var(--cyber-gold);
-            padding: 20px;
-            text-align: left;
-            margin: 25px 0;
-            line-height: 1.6;
-        }
-
-        .instructions-panel h3 {
-            margin-top: 0;
-            color: var(--neon-aqua);
-            text-transform: uppercase;
-        }
-
-        /* Botão Alta Costura / Cyber */
-        .btn-atlantis {
-            background: transparent;
-            border: 2px solid var(--cyber-gold);
-            color: #fff;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
-        }
-
-        .btn-atlantis:hover {
-            background: var(--cyber-gold);
-            color: #000;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
-            transform: scale(1.03);
-        }
-
-        /* Elementos Ocultos por Padrão (Fases e Final) */
-        .screen {
-            display: none;
-        }
-
-        .screen.active {
-            display: block;
-        }
-    </style>
+    <!-- Link de conexão com o arquivo CSS separado -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="game-fortress">
         
-        <!-- TELA INICIAL -->
+        <!-- BARRA DE STATUS GLOBAL (HUD) -->
+        <div id="game-hud" class="hud-status" style="display: none;">
+            <div class="hud-item">
+                NODE_FASE: <span id="hud-phase" class="neon-text">1 / 5</span>
+            </div>
+            <div class="hud-item">
+                INTEGRIDADE_DNA: <span id="hud-lives" class="red-text">███</span>
+            </div>
+            <div class="hud-item">
+                EVOLUTION_SCORE: <span id="hud-score" class="gold-text">0000</span>
+            </div>
+        </div>
+
+        <!-- TELA 1: TELA INICIAL -->
         <div id="start-screen" class="screen active">
-            <!-- Espaço para foto do desfile (Plato's Atlantis) -->
             <div class="fashion-frame">
-                <!-- Substitua o src abaixo pelo link da sua foto do desfile se quiser -->
                 <img src="https://unsplash.com" alt="Plato's Atlantis Cyber Grid">
                 <div class="frame-label">SYSTEM_OVERRIDE // MCQUEEN_SS10</div>
             </div>
@@ -164,18 +40,67 @@
                 <p>Você precisará analisar vulnerabilidades de senhas, detectar mutações de engenharia social (phishing) e purificar os códigos infectados. Proteja os dados... ou a civilização digital colapsará.</p>
             </div>
 
-            <button class="btn-atlantis" onclick="iniciarJogo()">Iniciar Missão</button>
+            <button class="btn-atlantis btn-full" onclick="iniciarJogo()">Iniciar Missão</button>
         </div>
 
-        <!-- AS PRÓXIMAS TELAS (FASE E FINAL) SERÃO INSERIDAS NO PRÓXIMO PASSO -->
+        <!-- TELA 2: GAMEPLAY (DESAFIOS) -->
+        <div id="quiz-screen" class="screen">
+            <div class="fashion-frame frame-short">
+                <img src="https://unsplash.com" alt="Biometric Scan">
+                <div class="frame-label">DECODING_DATA_STREAM // PHASE_IMG</div>
+            </div>
+
+            <div class="challenge-box">
+                <strong class="neon-text">ALERTA DE SEGURANÇA:</strong>
+                <p id="question-text">Carregando dados da inteligência bio-digital...</p>
+            </div>
+
+            <div id="options-container" class="options-grid">
+                <!-- Injetado via JS -->
+            </div>
+        </div>
+
+        <!-- TELA 3: FEEDBACK DA FASE -->
+        <div id="feedback-screen" class="screen">
+            <h1 id="feedback-title">PROCESSANDO...</h1>
+            
+            <div class="feedback-box">
+                <h3 id="feedback-status">ANÁLISE DE CÓDIGO</h3>
+                <p id="feedback-text">Aguardando telemetria.</p>
+            </div>
+
+            <button class="btn-atlantis btn-full" onclick="proximoDesafio()">Avançar na Passarela</button>
+        </div>
+
+        <!-- TELA 4: TELA FINAL (VEREDITO) -->
+        <div id="end-screen" class="screen">
+            <div class="fashion-frame">
+                <img src="https://unsplash.com" alt="Evolution Completed">
+                <div class="frame-label">FINAL_DIAGNOSTIC // COLD_STREAM</div>
+            </div>
+
+            <h1 id="end-title">FIM DA TRANSMISSÃO</h1>
+            
+            <div class="instructions-panel panel-center">
+                <p id="end-message">Carregando relatório de mutação digital...</p>
+                <h2 class="gold-text-title">SCORE: <span id="final-score">0000</span></h2>
+            </div>
+
+            <button class="btn-atlantis btn-full" onclick="reiniciarJogo()">Executar Novo Ciclo</button>
+        </div>
 
     </div>
 
+    <!-- Script temporário de controle até fazermos o script.js definitivo -->
     <script>
-        // Função inicial apenas para teste de transição
         function iniciarJogo() {
-            alert("Sistema Inicializado! Vamos construir a mecânica das fases no próximo passo.");
+            document.getElementById('start-screen').classList.remove('active');
+            document.getElementById('game-hud').style.display = 'flex';
+            document.getElementById('quiz-screen').classList.add('active');
+            document.getElementById('question-text').innerText = "HTML e CSS devidamente separados. Aguardando a injeção do arquivo script.js.";
         }
+        function proximoDesafio() {}
+        function reiniciarJogo() {}
     </script>
 </body>
 </html>
