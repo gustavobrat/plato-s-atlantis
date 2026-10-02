@@ -1,61 +1,207 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ALEXANDER MCQUEEN – PLATO'S ATLANTIS: THE GAME</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        ALEXANDER MCQUEEN — PLATO'S ATLANTIS: THE GAME
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-    <!-- ==================================================
-         MÚSICA DE FUNDO
-         COLOQUE SUA MÚSICA EM:
-         audio/background.mp3
-    =================================================== -->
 
-    <audio id="backgroundMusic" loop>
-        <source src="audio/background.mp3" type="audio/mpeg">
+    <!-- =========================================================
+         CONCEITO DO PROJETO
+         =========================================================
+
+         PLATO'S ATLANTIS: THE GAME é um jogo educativo inspirado
+         no universo visual de Plato's Atlantis, de Alexander McQueen.
+
+         NARRATIVA:
+
+         Atlantis é uma sociedade futurista construída sobre o oceano.
+         Humanos e tecnologia convivem, mas uma inteligência artificial
+         criada para auxiliar a população começa gradualmente a assumir
+         decisões que antes pertenciam às pessoas.
+
+         O jogador atravessa cinco situações e precisa identificar
+         problemas relacionados ao uso irresponsável da inteligência
+         artificial.
+
+         Os desafios trabalham conceitos como:
+
+         01. AUTONOMIA
+         02. PRIVACIDADE
+         03. VIESES
+         04. PENSAMENTO CRÍTICO
+         05. SUPERVISÃO HUMANA
+
+         O objetivo não é simplesmente "vencer" a inteligência artificial,
+         mas compreender como a tecnologia pode ser utilizada sem retirar
+         das pessoas sua capacidade de escolha, análise e controle.
+
+    ================================================================ -->
+
+
+    <!-- =========================================================
+         MÚSICA DE FUNDO
+         =========================================================
+
+         IMPORTANTE:
+
+         Existe SOMENTE UMA música no projeto.
+
+         Arquivo:
+
+         audio/background.mp3
+
+         Não existem sons de resposta correta ou incorreta.
+
+    ================================================================ -->
+
+    <audio
+        id="backgroundMusic"
+        loop
+    >
+
+        <source
+            src="audio/background.mp3"
+            type="audio/mpeg"
+        >
+
     </audio>
 
 
-    <!-- ==================================================
+
+    <!-- =========================================================
          TELA DE CARREGAMENTO
-    =================================================== -->
+         =========================================================
 
-    <section id="loadingScreen" class="loading-screen">
+         Esta tela permanece durante 5 segundos.
 
-        <!-- IMAGEM DA MODELO - TELA DE CARREGAMENTO -->
-        <div class="loading-image">
-            <img
-                src="images/loading-model.jpg"
-                alt="Silhueta de modelo"
+         Depois que o carregamento termina, ela desaparece
+         através de um efeito de fade-out controlado pelo JavaScript.
+
+         IMAGEM DA SILHUETA:
+
+         Coloque sua imagem PNG neste local:
+
+         images/loading-model.png
+
+         Essa imagem representa a silhueta da modelo e ocupa
+         o espaço principal da tela inicial.
+
+    ================================================================ -->
+
+    <section
+        id="loadingScreen"
+        class="loading-screen"
+    >
+
+        <div class="loading-editorial">
+
+
+            <!-- IMAGEM PNG DA SILHUETA DA MODELO -->
+
+            <div
+                class="loading-image"
+                id="loadingModel"
             >
+
+                <img
+                    src="images/loading-model.png"
+                    alt="Silhueta de modelo inspirada no universo de Atlantis"
+                >
+
+            </div>
+
+
+
+            <!-- IDENTIDADE DO PROJETO -->
+
+            <div class="loading-title">
+
+                <p class="loading-brand">
+                    ALEXANDER MCQUEEN
+                </p>
+
+                <h1>
+                    PLATO'S ATLANTIS
+                </h1>
+
+                <p class="loading-subtitle">
+                    THE GAME
+                </p>
+
+            </div>
+
+
+
+            <!-- BARRA DE CARREGAMENTO -->
+
+            <div class="loading-area">
+
+                <div class="loading-bar">
+
+                    <div
+                        id="loadingProgress"
+                        class="loading-progress"
+                    ></div>
+
+                </div>
+
+                <p id="loadingText">
+                    LOADING...
+                </p>
+
+            </div>
+
+
         </div>
-
-        <h1>
-            ALEXANDER MCQUEEN
-            <span>PLATO'S ATLANTIS</span>
-            <small>THE GAME</small>
-        </h1>
-
-        <div class="loading-bar">
-            <div id="loadingProgress"></div>
-        </div>
-
-        <p id="loadingText">LOADING...</p>
 
     </section>
 
 
-    <!-- ==================================================
-         MENU / INTRODUÇÃO
-    =================================================== -->
 
-    <section id="menuScreen" class="screen hidden">
+    <!-- =========================================================
+         MENU PRINCIPAL / INTRODUÇÃO
+         =========================================================
+
+         Esta é a primeira tela do jogo depois do carregamento.
+
+         Ela apresenta:
+
+         - título
+         - tema
+         - narrativa
+         - instruções
+         - botão para começar
+         - imagem principal de Atlantis
+
+    ================================================================ -->
+
+    <section
+        id="menuScreen"
+        class="screen hidden"
+    >
+
+
+        <!-- CABEÇALHO -->
 
         <header class="top-bar">
 
@@ -63,16 +209,34 @@
                 ALEXANDER MCQUEEN
             </div>
 
-            <button id="settingsButton">
+            <div class="edition">
+                DIGITAL ARCHIVE / 2009
+            </div>
+
+            <button
+                id="settingsButton"
+                class="text-button"
+            >
                 SETTINGS
             </button>
 
         </header>
 
 
+
+        <!-- CONTEÚDO PRINCIPAL -->
+
         <main class="intro">
 
-            <p class="eyebrow">PLATO'S ATLANTIS</p>
+
+            <!-- TEMA -->
+
+            <p class="eyebrow">
+                PLATO'S ATLANTIS
+            </p>
+
+
+            <!-- TÍTULO -->
 
             <h2>
                 WELCOME TO
@@ -80,141 +244,309 @@
             </h2>
 
 
-            <!-- IMAGEM PRINCIPAL DA INTRODUÇÃO -->
+
+            <!-- IMAGEM PRINCIPAL -->
+
             <div class="intro-image">
+
+                <!--
+                    COLOQUE AQUI A IMAGEM PRINCIPAL DE ATLANTIS:
+
+                    images/atlantis.jpg
+                -->
+
                 <img
                     src="images/atlantis.jpg"
-                    alt="Imagem de Atlantis"
+                    alt="Paisagem futurista de Atlantis"
                 >
+
             </div>
 
 
-            <div class="story">
 
-                <p>
-                    Atlantis é uma sociedade construída sobre o oceano,
-                    onde tecnologia e humanidade coexistem.
+            <!-- =================================================
+                 NARRATIVA
+            ================================================== -->
+
+            <article class="story">
+
+                <p class="story-label">
+                    THE STORY
                 </p>
 
-                <p>
-                    Porém, uma inteligência artificial passou a controlar
-                    cada vez mais aspectos da vida da população.
-                </p>
 
                 <p>
-                    Decisões pessoais começaram a ser automatizadas,
-                    informações passaram a ser filtradas e os habitantes
-                    começaram a questionar quanto controle ainda possuíam
+                    Atlantis é uma sociedade futurista construída
+                    sobre o oceano, onde humanos e tecnologia
+                    desenvolveram uma relação cada vez mais próxima.
+                </p>
+
+
+                <p>
+                    Para facilitar a vida da população, uma
+                    inteligência artificial passou a auxiliar em
+                    decisões, informações e serviços cotidianos.
+                </p>
+
+
+                <p>
+                    Com o tempo, porém, a tecnologia começou a
+                    ultrapassar sua função original. Algumas
+                    decisões que pertenciam às pessoas passaram
+                    a ser tomadas automaticamente.
+                </p>
+
+
+                <p>
+                    Informações começaram a ser filtradas, dados
+                    pessoais passaram a ser utilizados sem
+                    transparência e os habitantes começaram a
+                    questionar quanto controle ainda possuíam
                     sobre suas próprias vidas.
                 </p>
 
+
                 <p>
-                    Agora você precisa atravessar cinco desafios para
-                    compreender os riscos e defender a autonomia dos
-                    habitantes de Atlantis.
+                    Agora Atlantis precisa fazer uma escolha:
+                    continuar delegando suas decisões à máquina
+                    ou recuperar o controle sobre seu próprio futuro.
                 </p>
 
-            </div>
+            </article>
 
 
-            <button id="startButton" class="main-button">
+
+            <!-- =================================================
+                 COMO JOGAR
+            ================================================== -->
+
+            <section class="how-to-play">
+
+                <p class="story-label">
+                    HOW TO PLAY
+                </p>
+
+
+                <p>
+                    Atravesse os cinco desafios de Atlantis e
+                    escolha a alternativa que representa o uso
+                    mais consciente da inteligência artificial.
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        Existem 5 desafios.
+                    </li>
+
+                    <li>
+                        Cada resposta correta vale 100 pontos.
+                    </li>
+
+                    <li>
+                        Leia o feedback depois de cada resposta.
+                    </li>
+
+                    <li>
+                        Ao final, confira sua pontuação.
+                    </li>
+
+                </ul>
+
+
+            </section>
+
+
+
+            <!-- BOTÃO DE INÍCIO -->
+
+            <button
+                id="startButton"
+                class="main-button"
+            >
                 ENTER ATLANTIS
             </button>
 
+
         </main>
+
 
     </section>
 
 
-    <!-- ==================================================
-         JOGO
-    =================================================== -->
 
-    <section id="gameScreen" class="screen hidden">
+    <!-- =========================================================
+         TELA DO JOGO
+         ========================================================= -->
+
+    <section
+        id="gameScreen"
+        class="screen hidden"
+    >
+
+
+        <!-- CABEÇALHO DO JOGO -->
 
         <header class="game-header">
+
 
             <div class="brand">
                 ALEXANDER MCQUEEN
             </div>
 
+
             <div class="game-info">
 
-                <span>
-                    CHALLENGE
-                    <strong id="challengeNumber">1</strong>/5
-                </span>
 
                 <span>
-                    SCORE
-                    <strong id="score">0</strong>
+
+                    CHAPTER
+
+                    <strong id="challengeNumber">
+                        1
+                    </strong>
+
+                    /5
+
                 </span>
+
+
+                <span>
+
+                    SCORE
+
+                    <strong id="score">
+                        0
+                    </strong>
+
+                </span>
+
 
             </div>
 
+
         </header>
+
 
 
         <!-- BARRA DE PROGRESSO -->
 
         <div class="progress-container">
 
-            <div id="gameProgress"></div>
+            <div
+                id="gameProgress"
+                class="game-progress"
+            ></div>
 
         </div>
 
 
+
+        <!-- =====================================================
+             DESAFIO
+        ====================================================== -->
+
         <main class="challenge">
 
-            <!-- ==================================================
-                 ESPAÇO PARA IMAGEM DO DESAFIO
-            =================================================== -->
+
+            <!-- IMAGEM DO DESAFIO -->
 
             <div class="challenge-image">
+
+                <!--
+                    O JavaScript troca automaticamente esta imagem
+                    conforme o desafio.
+
+                    Arquivos utilizados:
+
+                    images/challenge-1.jpg
+                    images/challenge-2.jpg
+                    images/challenge-3.jpg
+                    images/challenge-4.jpg
+                    images/challenge-5.jpg
+                -->
 
                 <img
                     id="challengeImage"
                     src="images/challenge-1.jpg"
-                    alt="Imagem do desafio"
+                    alt="Imagem do desafio atual"
                 >
 
             </div>
 
 
-            <!-- ==================================================
-                 CONTEÚDO DO DESAFIO
-            =================================================== -->
+
+            <!-- CONTEÚDO -->
 
             <div class="challenge-content">
+
 
                 <p
                     id="challengeCategory"
                     class="eyebrow"
                 >
-                    AUTONOMIA
+                    AUTONOMY
                 </p>
+
+
+                <p class="chapter-label">
+                    CHAPTER 01
+                </p>
+
 
                 <h2 id="challengeTitle">
                     THE MACHINE
                 </h2>
 
-                <p id="question">
-                    Pergunta
+
+                <p
+                    id="question"
+                    class="question"
+                >
+                    Pergunta do desafio.
                 </p>
 
 
-                <div id="answers" class="answers">
-                    <!-- respostas inseridas pelo JavaScript -->
+
+                <!-- ALTERNATIVAS -->
+
+                <div
+                    id="answers"
+                    class="answers"
+                >
+
+                    <!--
+                        As alternativas são inseridas
+                        automaticamente pelo JavaScript.
+                    -->
+
                 </div>
 
+
+
+                <!-- =================================================
+                     FEEDBACK
+                ================================================== -->
 
                 <div
                     id="feedback"
                     class="feedback hidden"
                 >
-                    <!-- feedback inserido pelo JavaScript -->
+
+                    <!--
+                        O JavaScript informa aqui:
+
+                        - se a resposta está correta
+                        - se está incorreta
+                        - por que a alternativa está correta
+                    -->
+
                 </div>
 
+
+
+                <!-- CONTINUAR -->
 
                 <button
                     id="nextButton"
@@ -223,23 +555,29 @@
                     CONTINUE
                 </button>
 
+
             </div>
 
+
         </main>
+
 
     </section>
 
 
-    <!-- ==================================================
+
+    <!-- =========================================================
          CONFIGURAÇÕES
-    =================================================== -->
+         ========================================================= -->
 
     <div
         id="settingsPanel"
         class="settings-overlay hidden"
     >
 
+
         <div class="settings-box">
+
 
             <button
                 id="closeSettings"
@@ -248,14 +586,24 @@
                 ×
             </button>
 
-            <p class="eyebrow">SETTINGS</p>
 
-            <h2>GAME SETTINGS</h2>
+            <p class="eyebrow">
+                SETTINGS
+            </p>
+
+
+            <h2>
+                GAME SETTINGS
+            </h2>
 
 
             <div class="setting-row">
 
-                <span>BACKGROUND MUSIC</span>
+
+                <span>
+                    BACKGROUND MUSIC
+                </span>
+
 
                 <button
                     id="musicButton"
@@ -264,49 +612,86 @@
                     ON
                 </button>
 
+
             </div>
 
+
             <p class="settings-description">
-                A música de fundo pode ser ativada ou desativada
-                durante o jogo.
+                Ative ou desative a música de fundo durante
+                a experiência.
             </p>
 
+
         </div>
+
 
     </div>
 
 
-    <!-- ==================================================
-         TELA FINAL
-    =================================================== -->
 
-    <section id="finalScreen" class="screen hidden">
+    <!-- =========================================================
+         TELA FINAL
+         =========================================================
+
+         Apresenta:
+
+         - imagem final
+         - pontuação
+         - resultado
+         - possibilidade de jogar novamente
+
+    ========================================================= -->
+
+    <section
+        id="finalScreen"
+        class="screen hidden"
+    >
+
 
         <main class="final">
+
 
             <p class="eyebrow">
                 ATLANTIS ARCHIVE
             </p>
+
+
+            <p class="chapter-label">
+                END OF TRANSMISSION
+            </p>
+
 
             <h2>
                 THE END
             </h2>
 
 
+
             <!-- IMAGEM FINAL -->
+
             <div class="final-image">
+
+                <!--
+                    COLOQUE A IMAGEM FINAL AQUI:
+
+                    images/final.jpg
+                -->
 
                 <img
                     src="images/final.jpg"
-                    alt="Imagem final"
+                    alt="Imagem final de Atlantis"
                 >
 
             </div>
 
 
+
+            <!-- PONTUAÇÃO -->
+
             <p class="final-score-label">
                 FINAL SCORE
             </p>
+
 
             <div class="final-score">
 
@@ -314,15 +699,26 @@
                     0
                 </strong>
 
-                <span>/ 500</span>
+                <span>
+                    / 500
+                </span>
 
             </div>
 
 
-            <p id="finalMessage" class="final-message">
+
+            <!-- MENSAGEM FINAL -->
+
+            <p
+                id="finalMessage"
+                class="final-message"
+            >
                 Resultado
             </p>
 
+
+
+            <!-- JOGAR NOVAMENTE -->
 
             <button
                 id="restartButton"
@@ -331,12 +727,21 @@
                 PLAY AGAIN
             </button>
 
+
         </main>
+
 
     </section>
 
 
+
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
+
     <script src="script.js"></script>
 
+
 </body>
+
 </html>
