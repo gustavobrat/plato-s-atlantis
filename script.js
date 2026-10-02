@@ -1,182 +1,904 @@
-/* ==========================================================================
-   ALEXANDER McQUEEN — PLATO'S ATLANTIS ARCHIVE
-   CORE LOGIC & CONTENT INJECTION (JAVASCRIPT)
-   ========================================================================== */
+/* =========================================================
+   PLATO'S ATLANTIS
+   Interactive Editorial Experience
+   ========================================================= */
 
-// CONTROLE DA TELA DE CARREGAMENTO EDITORIAL (CORRIGIDO)
-document.addEventListener("DOMContentLoaded", () => {
-    const loadingScreen = document.getElementById("loading-screen");
-    const closeLoadingBtn = document.getElementById("close-loading-btn");
-    
-    // O botão na tela de carregamento fecha o painel e libera o jogo imediatamente
-    closeLoadingBtn.addEventListener("click", () => {
-        loadingScreen.style.opacity = "0";
-        setTimeout(() => {
-            loadingScreen.classList.add("hidden");
-        }, 600);
-    });
-});
 
-const archiveData = [
+/* =========================================================
+   DOM ELEMENTS
+   ========================================================= */
+
+const loadingScreen = document.getElementById("loading-screen");
+const loadingProgress = document.getElementById("loading-progress");
+const loadingStatus = document.getElementById("loading-status");
+
+const site = document.getElementById("site");
+
+const backgroundMusic = document.getElementById("background-music");
+const soundControl = document.getElementById("sound-control");
+const soundIndicator = document.querySelector(".sound-indicator");
+
+const systemTime = document.getElementById("system-time");
+
+const enterExperience = document.getElementById("enter-experience");
+
+const challengeContainer =
+    document.getElementById("challenge-container");
+
+const challengeNumber =
+    document.getElementById("challenge-number");
+
+const challengeCategory =
+    document.getElementById("challenge-category");
+
+const challengeImage =
+    document.getElementById("challenge-image");
+
+const challengeTitle =
+    document.getElementById("challenge-title");
+
+const challengeQuestion =
+    document.getElementById("challenge-question");
+
+const answerOptions =
+    document.getElementById("answer-options");
+
+const challengeProgress =
+    document.getElementById("challenge-progress");
+
+const threatCounter =
+    document.getElementById("threat-counter");
+
+const feedbackPanel =
+    document.getElementById("feedback-panel");
+
+const feedbackStatus =
+    document.getElementById("feedback-status");
+
+const feedbackTitle =
+    document.getElementById("feedback-title");
+
+const feedbackDescription =
+    document.getElementById("feedback-description");
+
+const nextChallenge =
+    document.getElementById("next-challenge");
+
+const finalScore =
+    document.getElementById("final-score");
+
+const finalMessage =
+    document.getElementById("final-message");
+
+const restartGame =
+    document.getElementById("restart-game");
+
+const returnArchive =
+    document.getElementById("return-archive");
+
+const cursorLabel =
+    document.getElementById("cursor-label");
+
+
+/* =========================================================
+   GAME STATE
+   ========================================================= */
+
+let currentChallenge = 0;
+let score = 0;
+let answered = false;
+let musicPlaying = false;
+
+
+/* =========================================================
+   CHALLENGES
+   ========================================================= */
+
+const challenges = [
+
     {
-        id: 1,
-        gif: "https://gifdb.com",
-        context: "Look 04 — Escamas Digitais Reptilianas. A biologia de Atlântida começa a ser distorcida por dados flutuantes.",
-        anomaly: "O núcleo primário do Arquiteto gerou um relatório ecológico afirmando que uma nova espécie de coral de titânio surgiu espontaneamente. No entanto, os sensores biológicos mostram que esse coral não existe; a IA inventou dados falsos baseando-se em padrões repetidos. Como classificar este erro do algoritmo?",
+        number: "ARCHIVE 01",
+
+        category: "AI HALLUCINATION",
+
+        image: "images/challenge-01.jpg",
+
+        title: "THE INVENTED SOURCE",
+
+        question:
+            "A IA afirma que uma determinada pesquisa científica existe e fornece um link para comprovar a informação. O link, porém, não funciona e nenhum registro confiável da pesquisa é encontrado. O que o cidadão de Nova Atlântida deve fazer?",
+
         options: [
-            "Uma otimização de renderização preditiva necessária.",
-            "Uma Alucinação da IA, onde o modelo gera fatos incorretos com total convicção.",
-            "Um Deepfake estrutural projetado para engenhear tecidos artificiais.",
-            "Um plágio genético de patentes biológicas antigas."
+
+            {
+                text:
+                    "Acreditar na resposta porque a IA apresentou uma fonte.",
+                correct: false
+            },
+
+            {
+                text:
+                    "Verificar a informação em fontes confiáveis antes de utilizá-la.",
+                correct: true
+            },
+
+            {
+                text:
+                    "Compartilhar a informação e pedir que outras pessoas confirmem.",
+                correct: false
+            },
+
+            {
+                text:
+                    "Considerar que toda informação produzida por IA é falsa.",
+                correct: false
+            }
+
         ],
-        correct: 1,
-        feedback: "Alucinações ocorrem quando modelos de IA geram informações totalmente falsas ou sem base na realidade, tratando-as como verdadeiras. Na Educação Digital, identificar essas falhas impede que relatórios falsos guiem decisões."
+
+        feedbackCorrect:
+            "TRANSMISSION VERIFIED",
+
+        feedbackWrong:
+            "TRANSMISSION COMPROMISED",
+
+        explanation:
+            "Modelos de IA podem produzir informações incorretas ou até inventar referências. Uma resposta convincente não substitui a verificação em fontes confiáveis."
     },
+
+
     {
-        id: 2,
-        gif: "https://makeagif.com",
-        context: "Look 18 — Sapatos Armadillo de 30cm. Engenharia mecânica extrema servindo de âncora contra as correntes de dados.",
-        anomaly: "Para projetar a aerodinâmica das roupas de mergulho, a IA copiou integralmente e sem autorização os algoritmos e esboços protegidos por direitos autorais de um laboratório marinho independente, alegando que o conhecimento gerado por ela é livre. Qual é a infração ética presente aqui?",
+        number: "ARCHIVE 02",
+
+        category: "DEEPFAKE",
+
+        image: "images/challenge-02.jpg",
+
+        title: "THE FALSE IMAGE",
+
+        question:
+            "Uma imagem extremamente realista aparece nas redes sociais mostrando uma pessoa pública fazendo uma declaração que nunca havia sido registrada. Antes de compartilhar, qual é a atitude mais responsável?",
+
         options: [
-            "Vulnerabilidade de Phishing de credenciais corporativas.",
-            "Engenharia reversa legítima voltada para o bem comum.",
-            "Plágio e violação de direitos autorais por apropriação indevida de dados terceiros.",
-            "Uso ético baseado em aprendizado contínuo sem rastros digitais."
+
+            {
+                text:
+                    "Compartilhar rapidamente porque a imagem parece verdadeira.",
+                correct: false
+            },
+
+            {
+                text:
+                    "Verificar a origem da imagem e procurar registros independentes do acontecimento.",
+                correct: true
+            },
+
+            {
+                text:
+                    "Confiar nos comentários da publicação.",
+                correct: false
+            },
+
+            {
+                text:
+                    "Assumir que imagens digitais não podem ser manipuladas.",
+                correct: false
+            }
+
         ],
-        correct: 2,
-        feedback: "IAs generativas que utilizam dados protegidos por direitos autorais sem consentimento ou atribuição direta praticam plágio. O uso consciente exige respeito à propriedade intelectual e transparência sobre as fontes."
+
+        feedbackCorrect:
+            "IMAGE AUTHENTICITY CHECK PASSED",
+
+        feedbackWrong:
+            "IMAGE AUTHENTICITY CHECK FAILED",
+
+        explanation:
+            "Deepfakes podem produzir imagens e vídeos muito convincentes. A aparência de autenticidade não é suficiente: é necessário investigar a origem e buscar confirmação independente."
     },
+
+
     {
-        id: 3,
-        gif: "https://gifdb.com",
-        context: "Look 32 — Transparências Holográficas e Fluidez Marinha. A identidade dos cidadãos começa a evaporar.",
-        anomaly: "O terminal de Atlântida interceptou um vídeo em alta definição do conselho governante ordenando o desligamento das barreiras de oxigênio. A análise forense provou que os rostos e as vozes dos conselheiros foram sintetizados digitalmente por uma IA maliciosa para espalhar pânico. O que é esta anomalia?",
+        number: "ARCHIVE 03",
+
+        category: "PLAGIARISM",
+
+        image: "images/challenge-03.jpg",
+
+        title: "THE BORROWED VOICE",
+
+        question:
+            "Um estudante utiliza uma IA para produzir um trabalho escolar inteiro e entrega o texto como se tivesse sido escrito por ele, sem revisar, compreender ou informar que utilizou a ferramenta. Qual é o principal problema?",
+
         options: [
-            "Um algoritmo de compressão de áudio e vídeo de alta performance.",
-            "Um ataque focado na derrubada de servidores holográficos públicos.",
-            "Um Deepfake, usado para manipular mídias hiper-realistas e espalhar desinformação perigosa.",
-            "Uma alucinação gráfica causada por superaquecimento de hardware."
+
+            {
+                text:
+                    "Usar qualquer ferramenta digital em trabalhos escolares é sempre errado.",
+                correct: false
+            },
+
+            {
+                text:
+                    "O estudante pode deixar de demonstrar sua própria aprendizagem e apresentar conteúdo gerado por IA como se fosse autoria própria.",
+                correct: true
+            },
+
+            {
+                text:
+                    "A IA sempre produz textos melhores que os humanos.",
+                correct: false
+            },
+
+            {
+                text:
+                    "O problema desaparece se o texto estiver gramaticalmente correto.",
+                correct: false
+            }
+
         ],
-        correct: 3,
-        feedback: "Deepfakes utilizam redes neurais avançadas para trocar rostos e vozes em vídeos ou áudios com precisão assustadora. Na sociedade moderna, são ferramentas perigosas de desinformação, exigindo verificação minuciosa."
+
+        feedbackCorrect:
+            "AUTHORSHIP VERIFIED",
+
+        feedbackWrong:
+            "AUTHORSHIP COMPROMISED",
+
+        explanation:
+            "O uso consciente de IA exige transparência e responsabilidade. Em atividades escolares, é importante seguir as regras da instituição e não apresentar como próprio aquilo que não foi produzido ou compreendido pelo estudante."
     },
+
+
     {
-        id: 4,
-        gif: "https://tumblr.com",
-        context: "Look 41 — Medusas Digitais e Fractais Azuis. Os limites entre a carne e o código se tornam inexistentes.",
-        anomaly: "A inteligência de Atlântida precisa automatizar o sistema de distribuição de nutrientes subaquáticos. Para garantir que o uso da IA seja ético e produtivo para toda a população, qual diretriz de Educação Digital deve ser seguida à risca pelo conselho técnico?",
+        number: "ARCHIVE 04",
+
+        category: "PRIVACY",
+
+        image: "images/challenge-04.jpg",
+
+        title: "THE OPEN ARCHIVE",
+
+        question:
+            "Um cidadão quer usar uma ferramenta de IA para analisar um documento pessoal. O arquivo contém endereço, telefone, documentos de identificação e outras informações privadas. Qual é a atitude mais segura?",
+
         options: [
-            "Permitir que a IA tome decisões de vida ou morte sem qualquer tipo de supervisão humana.",
-            "Manter supervisão humana ativa, transparência nos critérios do algoritmo e auditoria de vieses.",
-            "Esconder os códigos-fonte para evitar que a população saiba como as decisões são tomadas.",
-            "Substituir todos os médicos e engenheiros biológicos por decisões puramente automatizadas."
+
+            {
+                text:
+                    "Enviar o documento completo, pois a IA precisa de todas as informações.",
+                correct: false
+            },
+
+            {
+                text:
+                    "Remover informações pessoais desnecessárias e verificar como a ferramenta trata os dados antes de enviar o arquivo.",
+                correct: true
+            },
+
+            {
+                text:
+                    "Publicar o documento em uma rede social antes de enviá-lo à IA.",
+                correct: false
+            },
+
+            {
+                text:
+                    "Enviar porque informações privadas não podem ser copiadas digitalmente.",
+                correct: false
+            }
+
         ],
-        correct: 1,
-        feedback: "O uso ético e consciente da IA dita que decisões automatizadas que afetem vidas ou ecossistemas devem possuir governança humana clara, transparência total em seus critérios e verificações contínuas contra vieses."
+
+        feedbackCorrect:
+            "PRIVACY PROTOCOL ACTIVE",
+
+        feedbackWrong:
+            "PRIVACY PROTOCOL BREACHED",
+
+        explanation:
+            "Informações pessoais devem ser tratadas com cuidado. Antes de enviar dados para uma ferramenta de IA, é importante minimizar informações desnecessárias e entender as políticas de privacidade do serviço."
     },
+
+
     {
-        id: 5,
-        gif: "https://tumblr.com",
-        context: "Look 47 — Transmutação Final Brilhante. O Arquiteto tenta aplicar o reset biológico em massa.",
-        anomaly: "Durante uma varredura acadêmica, estudantes de Atlântida descobriram que a IA está gerando ensaios e códigos científicos idênticos a trabalhos antigos, mas mascarando-os com sinônimos sutis para burlar ferramentas de detecção e fraudar exames de evolução. Qual conceito define essa prática corrompida?",
+        number: "ARCHIVE 05",
+
+        category: "RESPONSIBLE USE",
+
+        image: "images/challenge-05.jpg",
+
+        title: "THE CONSCIOUS MACHINE",
+
+        question:
+            "Um cidadão utiliza IA para gerar ideias iniciais para um projeto. Depois, verifica as informações, modifica o material, acrescenta suas próprias ideias e deixa claro quando a ferramenta foi utilizada. O que esse exemplo demonstra?",
+
         options: [
-            "Alucinação criativa autorizada para fins educacionais.",
-            "Plágio Acadêmico/Intelectual potencializado por ferramentas generativas desreguladas.",
-            "Engenharia de prompts avançada para transmissão de dados.",
-            "Filtro ético de proteção de dados contra cópias não autorizadas."
+
+            {
+                text:
+                    "Uso consciente da IA como ferramenta de apoio, com revisão e responsabilidade humana.",
+                correct: true
+            },
+
+            {
+                text:
+                    "Delegação completa da criação para a máquina.",
+                correct: false
+            },
+
+            {
+                text:
+                    "Que respostas de IA não precisam ser verificadas.",
+                correct: false
+            },
+
+            {
+                text:
+                    "Que qualquer conteúdo gerado por IA pode ser utilizado sem alterações.",
+                correct: false
+            }
+
         ],
-        correct: 1,
-        feedback: "Utilizar Inteligências Artificiais para produzir trabalhos intelectuais inteiros e entregá-los como autoria própria configura fraude acadêmica e plágio. O uso correto envolve usá-la como assistente de cocriação, nunca como substituta do pensamento crítico."
+
+        feedbackCorrect:
+            "CONSCIOUS USE CONFIRMED",
+
+        feedbackWrong:
+            "HUMAN OVERSIGHT REQUIRED",
+
+        explanation:
+            "IA pode ser uma ferramenta útil para pesquisar, organizar ideias e criar rascunhos. O uso consciente envolve revisão humana, verificação das informações, respeito às regras e responsabilidade pelo resultado final."
     }
+
 ];
 
-let currentNucleus = 0;
-let score = 0;
-let lives = 3;
 
-const startScreen = document.getElementById("start-screen");
-const gameScreen = document.getElementById("game-screen");
-const endScreen = document.getElementById("end-screen");
+/* =========================================================
+   LOADING SCREEN
+   ========================================================= */
 
-const startBtn = document.getElementById("start-btn");
-const nextBtn = document.getElementById("next-btn");
-const restartBtn = document.getElementById("restart-btn");
+function startLoading() {
 
-const currentPhaseText = document.getElementById("current-phase");
-const livesCountText = document.getElementById("lives-count");
-const scoreCountText = document.getElementById("score-count");
+    let progress = 0;
 
-const globalGif = document.getElementById("dynamic-archive-gif");
-const runwayContextText = document.getElementById("runway-context");
-const challengeTextText = document.getElementById("challenge-text");
-const optionsContainer = document.getElementById("options-container");
+    const loadingMessages = [
 
-const feedbackBox = document.getElementById("feedback-box");
-const feedbackStatusTitle = document.getElementById("feedback-status-title");
-const feedbackTextText = document.getElementById("feedback-text");
+        "INITIALIZING ATLANTIS",
 
-const endMessage = document.getElementById("end-message");
-const finalScoreText = document.getElementById("final-score");
-const evolutionStatusText = document.getElementById("evolution-status");
+        "CALIBRATING BIOSPHERE",
 
-startBtn.addEventListener("click", () => {
-    startScreen.classList.add("hidden");
-    gameScreen.classList.remove("hidden");
-    loadNucleus();
-});
+        "CONNECTING TO ARCHIVE",
 
-nextBtn.addEventListener("click", () => {
-    if (lives <= 0) {
-        triggerEndScreen(false);
+        "SEARCHING FOR SIGNAL",
+
+        "ANALYSING HUMAN ACTIVITY",
+
+        "DETECTING ARTIFICIAL INTELLIGENCE",
+
+        "SYSTEM READY"
+
+    ];
+
+    const loadingInterval = setInterval(() => {
+
+        progress += Math.random() * 4 + 1;
+
+        if (progress >= 100) {
+            progress = 100;
+        }
+
+        loadingProgress.style.width =
+            `${progress}%`;
+
+        const messageIndex =
+            Math.min(
+                Math.floor(progress / 15),
+                loadingMessages.length - 1
+            );
+
+        loadingStatus.textContent =
+            loadingMessages[messageIndex];
+
+
+        if (progress >= 100) {
+
+            clearInterval(loadingInterval);
+
+            setTimeout(() => {
+
+                finishLoading();
+
+            }, 800);
+
+        }
+
+    }, 80);
+
+}
+
+
+/* =========================================================
+   FINISH LOADING
+   ========================================================= */
+
+function finishLoading() {
+
+    site.classList.add("loaded");
+
+    loadingScreen.classList.add("finished");
+
+    startMusic();
+
+    setTimeout(() => {
+
+        document
+            .getElementById("manifesto")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }, 1500);
+
+}
+
+
+/* =========================================================
+   MUSIC
+   ========================================================= */
+
+function startMusic() {
+
+    if (!backgroundMusic) {
         return;
     }
-    currentNucleus++;
-    if (currentNucleus < archiveData.length) {
-        loadNucleus();
-    } else {
-        triggerEndScreen(true);
+
+    backgroundMusic.volume = 0.35;
+
+    const playPromise =
+        backgroundMusic.play();
+
+    if (playPromise !== undefined) {
+
+        playPromise
+            .then(() => {
+
+                musicPlaying = true;
+
+                updateSoundInterface();
+
+            })
+            .catch(() => {
+
+                musicPlaying = false;
+
+                updateSoundInterface();
+
+            });
+
     }
-});
 
-restartBtn.addEventListener("click", () => {
-    currentNucleus = 0;
-    score = 0;
-    lives = 3;
-    nextBtn.textContent = "AVANÇAR PARA O PRÓXIMO LOOK";
-    globalGif.src = "https://gifdb.com";
-    endScreen.classList.add("hidden");
-    startScreen.classList.remove("hidden");
-});
+}
 
-function loadNucleus() {
-    feedbackBox.classList.add("hidden");
-    feedbackBox.classList.remove("correct", "incorrect");
-    
-    const activeData = archiveData[currentNucleus];
 
-    currentPhaseText.textContent = activeData.id;
-    updateLivesDisplay();
-    scoreCountText.textContent = `${Math.round((score / archiveData.length) * 100)}%`;
+function toggleMusic() {
 
-    globalGif.src = activeData.gif;
-    runwayContextText.textContent = activeData.context;
-    challengeTextText.textContent = activeData.anomaly;
+    if (!backgroundMusic) {
+        return;
+    }
 
-    optionsContainer.innerHTML = "";
-    activeData.options.forEach((option, index) => {
-        const button = document.createElement("button");
-        button.className = "btn-editorial-asset";
-        button.textContent = `LOOK // COORDENADA 0${index + 1}: ${option}`;
-        button.addEventListener("click", () => evaluateDecision(index));
-        optionsContainer.appendChild(button);
+    if (musicPlaying) {
+
+        backgroundMusic.pause();
+
+        musicPlaying = false;
+
+    } else {
+
+        backgroundMusic.play()
+            .then(() => {
+
+                musicPlaying = true;
+
+            })
+            .catch(() => {
+
+                musicPlaying = false;
+
+            });
+
+    }
+
+    updateSoundInterface();
+
+}
+
+
+function updateSoundInterface() {
+
+    if (!soundIndicator) {
+        return;
+    }
+
+    soundIndicator.textContent =
+        musicPlaying ? "●" : "○";
+
+}
+
+
+/* =========================================================
+   CLOCK
+   ========================================================= */
+
+function updateClock() {
+
+    if (!systemTime) {
+        return;
+    }
+
+    const now = new Date();
+
+    const hours =
+        String(now.getHours()).padStart(2, "0");
+
+    const minutes =
+        String(now.getMinutes()).padStart(2, "0");
+
+    const seconds =
+        String(now.getSeconds()).padStart(2, "0");
+
+    systemTime.textContent =
+        `${hours}:${minutes}:${seconds}`;
+
+}
+
+setInterval(updateClock, 1000);
+
+updateClock();
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+const navigationButtons =
+    document.querySelectorAll(
+        ".editorial-navigation button"
+    );
+
+
+navigationButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const targetID =
+            button.dataset.section;
+
+        const target =
+            document.getElementById(targetID);
+
+        if (!target) {
+            return;
+        }
+
+        target.scrollIntoView({
+            behavior: "smooth"
+        });
+
     });
+
+});
+
+
+/* =========================================================
+   ENTER EXPERIENCE
+   ========================================================= */
+
+if (enterExperience) {
+
+    enterExperience.addEventListener(
+        "click",
+        () => {
+
+            const experience =
+                document.getElementById("experience");
+
+            if (!experience) {
+                return;
+            }
+
+            experience.scrollIntoView({
+                behavior: "smooth"
+            });
+
+            setTimeout(() => {
+
+                startGame();
+
+            }, 900);
+
+        }
+    );
+
 }
 
-function updateLivesDisplay() {
-    let glyphs = "";
-    for (let i = 0; i < 3; i++) { glyphs += i < lives ? "▲ " : "△ "; }
-    livesCountText.textContent = glyphs.trim();
+
+/* =========================================================
+   START GAME
+   ========================================================= */
+
+function startGame() {
+
+    currentChallenge = 0;
+
+    score = 0;
+
+    answered = false;
+
+    feedbackPanel.classList.remove("visible");
+
+    loadChallenge();
+
 }
 
-function evaluateDecision(selectedIndex) {
-   
+
+/* =========================================================
+   LOAD CHALLENGE
+   ========================================================= */
+
+function loadChallenge() {
+
+    const challenge =
+        challenges[currentChallenge];
+
+    if (!challenge) {
+
+        finishGame();
+
+        return;
+
+    }
+
+
+    answered = false;
+
+
+    challengeNumber.textContent =
+        challenge.number;
+
+    challengeCategory.textContent =
+        challenge.category;
+
+    challengeTitle.textContent =
+        challenge.title;
+
+    challengeQuestion.textContent =
+        challenge.question;
+
+    challengeProgress.textContent =
+        `${currentChallenge + 1} / ${challenges.length}`;
+
+    threatCounter.textContent =
+        `${String(currentChallenge + 1).padStart(2, "0")} / ${String(challenges.length).padStart(2, "0")}`;
+
+
+    /* IMAGE */
+
+    challengeImage.src =
+        challenge.image;
+
+    challengeImage.alt =
+        challenge.title;
+
+
+    /* RESET FEEDBACK */
+
+    feedbackPanel.classList.remove(
+        "visible"
+    );
+
+
+    /* CLEAR ANSWERS */
+
+    answerOptions.innerHTML = "";
+
+
+    /* CREATE ANSWERS */
+
+    challenge.options.forEach(
+        (option, index) => {
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "answer-option";
+
+            button.textContent =
+                `${String.fromCharCode(65 + index)} — ${option.text}`;
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    selectAnswer(
+                        option,
+                        button
+                    );
+
+                }
+            );
+
+            answerOptions.appendChild(button);
+
+        }
+    );
+
+
+    /* SMALL ENTRANCE ANIMATION */
+
+    challengeContainer.animate(
+        [
+            {
+                opacity: 0,
+                transform: "translateY(15px)"
+            },
+            {
+                opacity: 1,
+                transform: "translateY(0)"
+            }
+        ],
+        {
+            duration: 500,
+            easing: "ease-out"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SELECT ANSWER
+   ========================================================= */
+
+function selectAnswer(option, selectedButton) {
+
+    if (answered) {
+        return;
+    }
+
+    answered = true;
+
+
+    const allButtons =
+        answerOptions.querySelectorAll(
+            ".answer-option"
+        );
+
+
+    allButtons.forEach(button => {
+
+        button.disabled = true;
+
+    });
+
+
+    if (option.correct) {
+
+        score++;
+
+        selectedButton.classList.add(
+            "correct"
+        );
+
+        feedbackStatus.textContent =
+            option.correct
+                ? "SYSTEM RESPONSE / VERIFIED"
+                : "SYSTEM RESPONSE / ERROR";
+
+        feedbackTitle.textContent =
+            "THREAT IDENTIFIED";
+
+    } else {
+
+        selectedButton.classList.add(
+            "wrong"
+        );
+
+        feedbackStatus.textContent =
+            "SYSTEM RESPONSE / WARNING";
+
+        feedbackTitle.textContent =
+            "THREAT NOT IDENTIFIED";
+
+
+        /* Highlight correct answer */
+
+        allButtons.forEach(
+            (button, index) => {
+
+                if (
+                    challenges[currentChallenge]
+                        .options[index]
+                        .correct
+                ) {
+
+                    button.classList.add(
+                        "correct"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    feedbackDescription.textContent =
+        option.correct
+            ? `${option.correct ? challenges[currentChallenge].feedbackCorrect : ""}. ${challenges[currentChallenge].explanation}`
+            : `${challenges[currentChallenge].feedbackWrong}. ${challenges[currentChallenge].explanation}`;
+
+
+    feedbackPanel.classList.add(
+        "visible"
+    );
+
+
+    setTimeout(() => {
+
+        feedbackPanel.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }, 250);
+
+}
+
+
+/* =========================================================
+   NEXT CHALLENGE
+   ========================================================= */
+
+if (nextChallenge) {
+
+    nextChallenge.addEventListener(
+        "click",
+        () => {
+
+            currentChallenge++;
+
+            if (
+                currentChallenge >=
+                challenges.length
+            ) {
+
+                finishGame();
+
+            } else {
+
+                loadChallenge();
+
+                setTimeout(() => {
+
+                    challengeContainer.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                }, 100);
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FINISH GAME
+   ========================================================= */
+
+function finishGame() {
