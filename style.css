@@ -1,347 +1,218 @@
 /* ==========================================================================
-   ALEXANDER McQUEEN — PLATO'S ATLANTIS (HIGH-FASHION INTERFACE)
+   ALEXANDER McQUEEN — PLATO'S ATLANTIS ARCHIVE
+   CORE LOGIC & CONTENT INJECTION (JAVASCRIPT)
    ========================================================================== */
 
-@import url('https://googleapis.com');
+// CONTROLE DA TELA DE CARREGAMENTO EDITORIAL (CORRIGIDO)
+document.addEventListener("DOMContentLoaded", () => {
+    const loadingScreen = document.getElementById("loading-screen");
+    const closeLoadingBtn = document.getElementById("close-loading-btn");
+    
+    // O botão na tela de carregamento fecha o painel e libera o jogo imediatamente
+    closeLoadingBtn.addEventListener("click", () => {
+        loadingScreen.style.opacity = "0";
+        setTimeout(() => {
+            loadingScreen.classList.add("hidden");
+        }, 600);
+    });
+});
 
-:root {
-    --bg-absolute: #020406;
-    --mcqueen-pure: #ffffff;
-    --biolume: #00ffcc;
-    --data-blue: #0044cc;
-    --muted: #64748b;
-    --border-line: rgba(255, 255, 255, 0.08);
+const archiveData = [
+    {
+        id: 1,
+        gif: "https://gifdb.com",
+        context: "Look 04 — Escamas Digitais Reptilianas. A biologia de Atlântida começa a ser distorcida por dados flutuantes.",
+        anomaly: "O núcleo primário do Arquiteto gerou um relatório ecológico afirmando que uma nova espécie de coral de titânio surgiu espontaneamente. No entanto, os sensores biológicos mostram que esse coral não existe; a IA inventou dados falsos baseando-se em padrões repetidos. Como classificar este erro do algoritmo?",
+        options: [
+            "Uma otimização de renderização preditiva necessária.",
+            "Uma Alucinação da IA, onde o modelo gera fatos incorretos com total convicção.",
+            "Um Deepfake estrutural projetado para engenhear tecidos artificiais.",
+            "Um plágio genético de patentes biológicas antigas."
+        ],
+        correct: 1,
+        feedback: "Alucinações ocorrem quando modelos de IA geram informações totalmente falsas ou sem base na realidade, tratando-as como verdadeiras. Na Educação Digital, identificar essas falhas impede que relatórios falsos guiem decisões."
+    },
+    {
+        id: 2,
+        gif: "https://makeagif.com",
+        context: "Look 18 — Sapatos Armadillo de 30cm. Engenharia mecânica extrema servindo de âncora contra as correntes de dados.",
+        anomaly: "Para projetar a aerodinâmica das roupas de mergulho, a IA copiou integralmente e sem autorização os algoritmos e esboços protegidos por direitos autorais de um laboratório marinho independente, alegando que o conhecimento gerado por ela é livre. Qual é a infração ética presente aqui?",
+        options: [
+            "Vulnerabilidade de Phishing de credenciais corporativas.",
+            "Engenharia reversa legítima voltada para o bem comum.",
+            "Plágio e violação de direitos autorais por apropriação indevida de dados terceiros.",
+            "Uso ético baseado em aprendizado contínuo sem rastros digitais."
+        ],
+        correct: 2,
+        feedback: "IAs generativas que utilizam dados protegidos por direitos autorais sem consentimento ou atribuição direta praticam plágio. O uso consciente exige respeito à propriedade intelectual e transparência sobre as fontes."
+    },
+    {
+        id: 3,
+        gif: "https://gifdb.com",
+        context: "Look 32 — Transparências Holográficas e Fluidez Marinha. A identidade dos cidadãos começa a evaporar.",
+        anomaly: "O terminal de Atlântida interceptou um vídeo em alta definição do conselho governante ordenando o desligamento das barreiras de oxigênio. A análise forense provou que os rostos e as vozes dos conselheiros foram sintetizados digitalmente por uma IA maliciosa para espalhar pânico. O que é esta anomalia?",
+        options: [
+            "Um algoritmo de compressão de áudio e vídeo de alta performance.",
+            "Um ataque focado na derrubada de servidores holográficos públicos.",
+            "Um Deepfake, usado para manipular mídias hiper-realistas e espalhar desinformação perigosa.",
+            "Uma alucinação gráfica causada por superaquecimento de hardware."
+        ],
+        correct: 3,
+        feedback: "Deepfakes utilizam redes neurais avançadas para trocar rostos e vozes em vídeos ou áudios com precisão assustadora. Na sociedade moderna, são ferramentas perigosas de desinformação, exigindo verificação minuciosa."
+    },
+    {
+        id: 4,
+        gif: "https://tumblr.com",
+        context: "Look 41 — Medusas Digitais e Fractais Azuis. Os limites entre a carne e o código se tornam inexistentes.",
+        anomaly: "A inteligência de Atlântida precisa automatizar o sistema de distribuição de nutrientes subaquáticos. Para garantir que o uso da IA seja ético e produtivo para toda a população, qual diretriz de Educação Digital deve ser seguida à risca pelo conselho técnico?",
+        options: [
+            "Permitir que a IA tome decisões de vida ou morte sem qualquer tipo de supervisão humana.",
+            "Manter supervisão humana ativa, transparência nos critérios do algoritmo e auditoria de vieses.",
+            "Esconder os códigos-fonte para evitar que a população saiba como as decisões são tomadas.",
+            "Substituir todos os médicos e engenheiros biológicos por decisões puramente automatizadas."
+        ],
+        correct: 1,
+        feedback: "O uso ético e consciente da IA dita que decisões automatizadas que afetem vidas ou ecossistemas devem possuir governança humana clara, transparência total em seus critérios e verificações contínuas contra vieses."
+    },
+    {
+        id: 5,
+        gif: "https://tumblr.com",
+        context: "Look 47 — Transmutação Final Brilhante. O Arquiteto tenta aplicar o reset biológico em massa.",
+        anomaly: "Durante uma varredura acadêmica, estudantes de Atlântida descobriram que a IA está gerando ensaios e códigos científicos idênticos a trabalhos antigos, mas mascarando-os com sinônimos sutis para burlar ferramentas de detecção e fraudar exames de evolução. Qual conceito define essa prática corrompida?",
+        options: [
+            "Alucinação criativa autorizada para fins educacionais.",
+            "Plágio Acadêmico/Intelectual potencializado por ferramentas generativas desreguladas.",
+            "Engenharia de prompts avançada para transmissão de dados.",
+            "Filtro ético de proteção de dados contra cópias não autorizadas."
+        ],
+        correct: 1,
+        feedback: "Utilizar Inteligências Artificiais para produzir trabalhos intelectuais inteiros e entregá-los como autoria própria configura fraude acadêmica e plágio. O uso correto envolve usá-la como assistente de cocriação, nunca como substituta do pensamento crítico."
+    }
+];
+
+let currentNucleus = 0;
+let score = 0;
+let lives = 3;
+
+const startScreen = document.getElementById("start-screen");
+const gameScreen = document.getElementById("game-screen");
+const endScreen = document.getElementById("end-screen");
+
+const startBtn = document.getElementById("start-btn");
+const nextBtn = document.getElementById("next-btn");
+const restartBtn = document.getElementById("restart-btn");
+
+const currentPhaseText = document.getElementById("current-phase");
+const livesCountText = document.getElementById("lives-count");
+const scoreCountText = document.getElementById("score-count");
+
+const globalGif = document.getElementById("dynamic-archive-gif");
+const runwayContextText = document.getElementById("runway-context");
+const challengeTextText = document.getElementById("challenge-text");
+const optionsContainer = document.getElementById("options-container");
+
+const feedbackBox = document.getElementById("feedback-box");
+const feedbackStatusTitle = document.getElementById("feedback-status-title");
+const feedbackTextText = document.getElementById("feedback-text");
+
+const endMessage = document.getElementById("end-message");
+const finalScoreText = document.getElementById("final-score");
+const evolutionStatusText = document.getElementById("evolution-status");
+
+startBtn.addEventListener("click", () => {
+    startScreen.classList.add("hidden");
+    gameScreen.classList.remove("hidden");
+    loadNucleus();
+});
+
+nextBtn.addEventListener("click", () => {
+    if (lives <= 0) {
+        triggerEndScreen(false);
+        return;
+    }
+    currentNucleus++;
+    if (currentNucleus < archiveData.length) {
+        loadNucleus();
+    } else {
+        triggerEndScreen(true);
+    }
+});
+
+restartBtn.addEventListener("click", () => {
+    currentNucleus = 0;
+    score = 0;
+    lives = 3;
+    nextBtn.textContent = "AVANÇAR PARA O PRÓXIMO LOOK";
+    globalGif.src = "https://gifdb.com";
+    endScreen.classList.add("hidden");
+    startScreen.classList.remove("hidden");
+});
+
+function loadNucleus() {
+    feedbackBox.classList.add("hidden");
+    feedbackBox.classList.remove("correct", "incorrect");
+    
+    const activeData = archiveData[currentNucleus];
+
+    currentPhaseText.textContent = activeData.id;
+    updateLivesDisplay();
+    scoreCountText.textContent = `${Math.round((score / archiveData.length) * 100)}%`;
+
+    globalGif.src = activeData.gif;
+    runwayContextText.textContent = activeData.context;
+    challengeTextText.textContent = activeData.anomaly;
+
+    optionsContainer.innerHTML = "";
+    activeData.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.className = "btn-editorial-asset";
+        button.textContent = `LOOK // COORDENADA 0${index + 1}: ${option}`;
+        button.addEventListener("click", () => evaluateDecision(index));
+        optionsContainer.appendChild(button);
+    });
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+function updateLivesDisplay() {
+    let glyphs = "";
+    for (let i = 0; i < 3; i++) { glyphs += i < lives ? "▲ " : "△ "; }
+    livesCountText.textContent = glyphs.trim();
 }
 
-body {
-    background-color: var(--bg-absolute);
-    color: var(--mcqueen-pure);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 200;
-    height: 100vh;
-    overflow: hidden;
-    letter-spacing: 1.5px;
+function evaluateDecision(selectedIndex) {
+const buttons = optionsContainer.querySelectorAll(".btn-editorial-asset");
+buttons.forEach(btn => btn.disabled = true);
+const activeData = archiveData[currentNucleus];
+feedbackBox.classList.remove("hidden");
+if (selectedIndex === activeData.correct) {
+score++;
+feedbackBox.classList.add("correct");
+feedbackStatusTitle.textContent = "VEREDITO // SUCESSO ÉTICO";
+feedbackTextText.textContent = activeData.feedback;
+} else {
+lives--;
+feedbackBox.classList.add("incorrect");
+feedbackStatusTitle.textContent = "VEREDITO // SISTEMA CORROMPIDO";
+feedbackTextText.textContent = activeData.feedback;
+updateLivesDisplay();
 }
-
-.archive-grain-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.005), rgba(0, 0, 255, 0.01));
-    background-size: 100% 4px, 4px 100%;
-    z-index: 999;
-    pointer-events: none;
-    opacity: 0.5;
+if (lives <= 0) {
+nextBtn.textContent = "TERMINAR INTERCEPÇÃO";
 }
-
-/* ==========================================================================
-   TELA DE CARREGAMENTO EDITORIAL E MOLDURA PARA IMAGEM DA SILHUETA
-   ========================================================================== */
-.loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: var(--bg-absolute);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 1;
-    transition: opacity 0.6s ease-in-out;
 }
-
-.loading-wrapper {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+function triggerEndScreen(isVictorious) {
+gameScreen.classList.add("hidden");
+endScreen.classList.remove("hidden");
+const finalPercentage = Math.round((score / archiveData.length) * 100);
+finalScoreText.textContent = ${finalPercentage}%;
+if (isVictorious && finalPercentage >= 80) {
+endMessage.textContent = "O Arquiteto Simbionte foi completamente purgado de suas falhas algorítmicas. A sociedade de Plato's Atlantis garantiu sua evolução simbiótica com as ferramentas digitais de forma limpa, ética e consciente. Seus sapatos Armadillo triunfaram na passarela do futuro.";
+evolutionStatusText.textContent = "SÍMBIONTE SUPREMO";
+} else if (isVictorious && finalPercentage >= 50) {
+endMessage.textContent = "A IA foi contida, mas rastros de dados alucinados e plágios ainda flutuam nos oceanos da informação. A Nova Atlântida sobrevive, mas requer vigilância digital contínua para que as redes neurais artificiais não contaminem nossa biologia novamente.";
+evolutionStatusText.textContent = "MUTANTE CIBERNÉTICO VIGILANTE";
+} else {
+endMessage.textContent = "A integridade biológica colapsou sob o peso de deepfakes, fraudes corporativas e desinformação em massa geradas pela IA. As modelos-guerreiras afundaram no abismo de dados corrompidos. A evolução falhou.";
+evolutionStatusText.textContent = "CÓDIGO DELETADO NO ABISMO";
 }
-
-/* Moldura para receber sua imagem externa da silhueta */
-.model-silhouette-frame {
-    width: 150px;
-    height: 300px;
-    margin-bottom: 25px;
-    border: 1px dashed var(--border-line);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.01);
-    overflow: hidden;
 }
-
-.model-silhouette-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Mantém as proporções da silhueta que você subir */
-}
-
-.loading-brand {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 400;
-    letter-spacing: 14px;
-    margin-bottom: 10px;
-}
-
-.loading-status {
-    font-size: 0.65rem;
-    letter-spacing: 4px;
-    color: var(--muted);
-}
-
-.dots {
-    display: inline-block;
-    width: 15px;
-    text-align: left;
-}
-
-/* ==========================================================================
-   VIEWPORT PRINCIPAL DO ARQUIVO
-   ========================================================================== */
-.editorial-viewport {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-}
-
-.media-column {
-    flex: 1.1;
-    height: 100%;
-    background-color: #000;
-    border-right: 1px solid var(--border-line);
-}
-
-.media-wrapper, .media-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.content-column {
-    flex: 0.9;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    background: var(--bg-absolute);
-    padding: 60px;
-    overflow-y: auto;
-}
-
-.editorial-pane {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    min-height: 100%;
-}
-
-.hidden {
-    display: none !important;
-}
-
-/* TIPOGRAFIA EDITORIAL */
-.brand-header {
-    border-bottom: 1px solid var(--border-line);
-    padding-bottom: 25px;
-    margin-bottom: 35px;
-}
-
-.brand-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    font-weight: 400;
-    letter-spacing: 8px;
-    line-height: 1.1;
-}
-
-.brand-sub {
-    font-size: 0.7rem;
-    letter-spacing: 4px;
-    color: var(--muted);
-    margin-top: 10px;
-}
-
-.metadata-bar {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--border-line);
-    padding-bottom: 15px;
-    margin-bottom: 30px;
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    color: var(--muted);
-}
-
-.highlight {
-    color: var(--mcqueen-pure);
-    font-weight: 500;
-}
-
-.system-tag {
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    color: var(--biolume);
-    display: block;
-    margin-bottom: 15px;
-}
-
-.system-tag.alert { color: #ff3366; }
-
-.editorial-p {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    line-height: 1.6;
-    color: #cbd5e1;
-    margin-bottom: 20px;
-    text-align: justify;
-    font-style: italic;
-}
-
-.editorial-p strong {
-    color: #fff;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.editorial-p.center { text-align: center; }
-
-.directive-box {
-    border: 1px solid var(--border-line);
-    padding: 25px;
-    margin-bottom: 35px;
-    background: rgba(255, 255, 255, 0.005);
-}
-
-.directive-tag {
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    color: var(--muted);
-    display: block;
-    margin-bottom: 10px;
-}
-
-.directive-box p {
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: #94a3b8;
-}
-
-.curatorial-quote {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.2rem;
-    color: var(--muted);
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.dilemma-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 400;
-    line-height: 1.4;
-    margin-bottom: 35px;
-}
-
-/* BOTÕES REESTILIZADOS */
-.options-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.btn-editorial-asset {
-    background: transparent;
-    border: 1px solid var(--border-line);
-    color: #94a3b8;
-    padding: 20px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-    width: 100%;
-}
-
-.btn-editorial-asset:hover:not(:disabled) {
-    background: transparent;
-    border-color: var(--mcqueen-pure);
-    color: var(--mcqueen-pure);
-    padding-left: 30px;
-}
-
-.btn-editorial-action {
-    background: transparent;
-    border: 1px solid var(--mcqueen-pure);
-    color: var(--mcqueen-pure);
-    padding: 22px;
-    font-family: 'Playfair Display', serif;
-    font-size: 0.85rem;
-    letter-spacing: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-    width: 100%;
-    margin-top: auto;
-}
-
-.btn-editorial-action:hover {
-    background: var(--mcqueen-pure);
-    color: var(--bg-absolute);
-}
-
-.feedback-overlay {
-    margin-top: 25px;
-    padding: 30px;
-    background: #05080c;
-    border-left: 2px solid var(--border-line);
-}
-
-.feedback-overlay.correct { border-left-color: var(--biolume); }
-.feedback-overlay.incorrect { border-left-color: var(--data-blue); }
-
-.feedback-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
-}
-
-.correct .feedback-title { color: var(--biolume); }
-.incorrect .feedback-title { color: var(--data-blue); }
-
-.feedback-desc {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.25rem;
-    line-height: 1.6;
-    color: #94a3b8;
-    margin-bottom: 25px;
-}
-
-.summary-card {
-    border: 1px solid var(--border-line);
-    padding: 30px;
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.summary-row {
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    color: var(--muted);
-    margin: 12px 0;
-}
+                                 
