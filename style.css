@@ -1,0 +1,221 @@
+/* ESTILO COLECÃO MCQUEEN FUTURISTA 2010 */
+:root {
+    --bg-deep-ocean: linear-gradient(135deg, #020813 0%, #0c1a30 50%, #052e3d 100%);
+    --neon-aqua: #00ffcc;
+    --cyber-gold: #d4af37;
+    --digital-glow: rgba(0, 255, 204, 0.3);
+    --glass-bg: rgba(12, 26, 48, 0.85);
+    --neon-red: #ff3366;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace; /* Estilo programação */
+    background: var(--bg-deep-ocean);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+/* Container Principal do Desfile/Jogo */
+.game-fortress {
+    width: 90%;
+    max-width: 850px;
+    background: var(--glass-bg);
+    border: 2px solid var(--neon-aqua);
+    box-shadow: 0 0 40px var(--digital-glow), inset 0 0 20px rgba(0,0,0,0.9);
+    border-radius: 16px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+    position: relative;
+}
+
+/* Molduras de Fotos Alexander McQueen Style */
+.fashion-frame {
+    width: 100%;
+    height: 220px;
+    margin-bottom: 25px;
+    border: 1px solid var(--cyber-gold);
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.frame-short {
+    height: 150px;
+}
+
+.fashion-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    transition: all 0.5s ease;
+}
+
+.game-fortress:hover .fashion-frame img {
+    opacity: 0.75;
+    transform: scale(1.02);
+}
+
+.frame-label {
+    position: absolute;
+    bottom: 8px;
+    left: 12px;
+    font-size: 11px;
+    color: var(--cyber-gold);
+    letter-spacing: 3px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* Títulos e Identidade */
+h1 {
+    font-size: 2.6rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin: 10px 0;
+    text-shadow: 0 0 12px var(--neon-aqua);
+}
+
+.subtitle {
+    color: var(--cyber-gold);
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+/* Painel Superior de Status (Vidas e Score) */
+.hud-status {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 255, 204, 0.3);
+    padding: 12px 20px;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+}
+
+.neon-text { color: var(--neon-aqua); text-shadow: 0 0 8px var(--neon-aqua); }
+.gold-text { color: var(--cyber-gold); text-shadow: 0 0 8px var(--cyber-gold); }
+.red-text { color: var(--neon-red); text-shadow: 0 0 8px var(--neon-red); }
+
+/* Caixas de Texto / Desafios */
+.instructions-panel, .challenge-box, .feedback-box {
+    background: rgba(4, 15, 31, 0.7);
+    border-left: 4px solid var(--cyber-gold);
+    padding: 25px;
+    text-align: left;
+    margin: 25px 0;
+    line-height: 1.7;
+    border-radius: 0 8px 8px 0;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+}
+
+.challenge-box {
+    border-left-color: var(--neon-aqua);
+    font-size: 1.1rem;
+}
+
+.panel-center {
+    text-align: center;
+}
+
+.gold-text-title {
+    color: var(--cyber-gold);
+    letter-spacing: 3px;
+}
+
+.instructions-panel h3, .feedback-box h3 {
+    margin-top: 0;
+    color: var(--neon-aqua);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Grid de Respostas (Múltipla Escolha Estilizada) */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+/* Botões Alta Costura / Cyber */
+.btn-atlantis {
+    background: transparent;
+    border: 2px solid var(--cyber-gold);
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+}
+
+.btn-atlantis:hover {
+    background: var(--cyber-gold);
+    color: #000;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+    transform: scale(1.02);
+}
+
+.btn-full {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Botão específico para as opções da fase */
+.btn-option {
+    border: 1px solid var(--neon-aqua);
+    text-align: left;
+    padding: 18px;
+    font-size: 0.95rem;
+    background: rgba(12, 26, 48, 0.5);
+    border-radius: 4px;
+}
+
+.btn-option:hover {
+    background: var(--neon-aqua);
+    color: #020813;
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+    border-color: #fff;
+}
+
+/* Elementos Ocultos por Padrão (Fases e Final) */
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 650px) {
+    .options-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 1.9rem; }
+}
